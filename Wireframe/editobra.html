@@ -7,17 +7,10 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
     <title>Constru-tech</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"/>
-    
-
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/jquery-confirm.min.css">
     <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
-
+    <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -38,9 +31,12 @@
       li.badge>span{
         color: black !important;
       }
+      .jconfirm .jconfirm-box.jconfirm-animation-news{
+          transform: rotate(400deg) scale(0);
+          animation-duration: 3s;
+      }      
     </style>
-
-    
+    <link rel="stylesheet" href="css/jquery-ui.css">
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
     <!-- <link href="css/style.css" rel="stylesheet"> -->
@@ -145,7 +141,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 ">
-            <form method="post">
+            <form id="form">
               <div class="card text-center w-100">
                 <div class="card-header bg-primary text-white">
                   <h2>Editar obra</h2>
@@ -154,49 +150,49 @@
                   <div class="row">
                     <div class="col-6 mt-3">
                         <label for="direccion" class="form-label">Cliente<span class="text-danger">*</span></label>
-                        <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                          <option selected>Seleccione cliente</option>
-                          <option value="1">One</option>
-                          <option value="2">Two</option>
-                          <option value="3">Three</option>
+                        <select id="cliente" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                          <option value="">Seleccione cliente</option>
+                          <option value="1" selected>Ronald</option>
+                          <option value="2">Yeison</option>
+                          <option value="3">Pilar</option>
                         </select>
                     </div>
                     <div class="col-6 mt-3">
                       <label for="correo" class="form-label">Dirección <span class="text-danger">*</span></label>
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected>Seleccione direccion</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                      <select id="direccion" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option value="">Seleccione direccion</option>
+                        <option value="1" selected>Calle 103</option>
+                        <option value="2">Cra 49</option>
+                        <option value="3">Calle 99</option>
                       </select>
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Obra<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="Descripcion de la obra" aria-label="Dirección" required>
+                      <input id="descripcion" type="text" class="form-control" placeholder="Descripcion de la obra" aria-label="Dirección" value="Acabado exterior" required>
                     </div>
                     <div class="col-6 mt-3">
-                      <label for="direccion" class="form-label">Fecha inicio<span class="text-danger">*</span></label>
-                      <input type="date" class="form-control" placeholder="Tiempo" aria-label="Teléfono" required>
+                      <label for="fechaini" class="form-label">Fecha inicio<span class="text-danger">*</span></label>
+                      <input id="fechaini" type="date" class="form-control" placeholder="Tiempo" aria-label="Teléfono" required>
                     </div>
                     <div class="col-6 mt-3">
-                      <label for="direccion" class="form-label">Fecha fin<span class="text-danger">*</span></label>
-                      <input type="date" class="form-control" placeholder="Tiempo" aria-label="Teléfono" required>
+                      <label for="fechafin" class="form-label">Fecha fin<span class="text-danger">*</span></label>
+                      <input id="fechafin" type="date" class="form-control" placeholder="Tiempo" aria-label="Teléfono" required>
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Empleados encargados<span class="text-danger">*</span></label>
                       <select name="example2" id="example2" class="form-control" multiple="multiple" style="display: none;">
-                        <option value="1">Empleado 1</option>
-                        <option value="2">Empleado 2</option>
+                        <option value="1" selected>Empleado 1</option>
+                        <option value="2" selected>Empleado 2</option>
                         <option value="3">Empleado 3</option>
                       </select>
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Materiales requeridos<span class="text-danger">*</span></label>
-                      <select name="states" id="example" class="form-control"  multiple="multiple" style="display: none;">
+                      <select name="example" id="example" class="form-control"  multiple="multiple" style="display: none;">
                       
-                        <option value="1">Material 1</option>
+                        <option value="1" selected>Material 1</option>
                         <option value="2">Material 2</option>
-                        <option value="3">Material 3</option>
+                        <option value="3" selected>Material 3</option>
                       </select>
                       
                     </div>
@@ -205,7 +201,7 @@
                 <div class="card-footer text-center">
                   <div class="row">
                     <div class="col-md-6">
-                      <button type="submit" class="btn btn-primary w-50" href="obras.html"><h4>Agregar</h4></button>
+                      <button id="edit" class="btn btn-primary w-50" href="obras.html"><h4>Editar</h4></button>
                     </div>
                     <div class="col-md-6">
                       <a type="button" href="obras.html" class="btn btn-danger w-50"><h4>Cancelar</h4></a>
@@ -221,20 +217,58 @@
   </div>
 </div>
 
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script type="text/javascript" src="js/jquery-3.7.0.min.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/popper.min.js"></script>
   <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
   <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="https://kit.fontawesome.com/38595e06c7.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-  <script src="dashboard.js"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
+  <script src="js/38595e06c7.js" crossorigin="anonymous"></script>
+  <script src="js/jquery-confirm.min.js"></script>
   <script>
-    feather.replace()
     $("#example").bsMultiSelect();
     $("#example2").bsMultiSelect();
+    $("#fechaini").datepicker(defaultDate , "15/06/2023");
+    $("#fechafin").datepicker("setDate" , "15/07/2023");
+    $("#form").submit(function(e){
+        e.preventDefault();
+    });
+    
+    // $("#fechaini").val("15/06/2023")
+    // $("#fechafin").val("15/07/2023")
+    $('#edit').on('click', function(){
+      const cliente = $("#cliente").val();
+      const direccion = $("#dir").val();
+      const descripcion = $("#descripcion").val();
+      const fechaini = $("#fechaini").val();
+      const fechafin = $("#fechafin").val();
+      const selectEmpl = $("#example2").val();
+      const selectMat = $("#example").val(); 
+      if (cliente ==null || cliente =='' || selectEmpl.length <= 0 || selectMat.length <= 0 || fechaini == null || fechaini =='' || fechaini ==null || fechaini =='') {
+        $.confirm({
+            title:"Error",
+            content:"No deben haber campos vacios",
+            icon: 'fa fa-xmark',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'red',
+        });        
+      }else{
+        $.confirm({
+            title:"Success",
+            content:"Obra ingresada con exito",
+            icon: 'fa fa-check',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'green',
+        });         
+      }
+
+    });
   </script>
   </body>
 </html>
