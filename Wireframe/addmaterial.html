@@ -158,10 +158,9 @@
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Proveedor <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" id="proveedor" aria-label=".form-select-sm example">
-                        <option selected value="">Seleccione proveeedor</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="1">Pintuco</option>
+                        <option value="2">Homecenter</option>
+                        <option value="3">Corona</option>
                       </select>
                     </div>
                     <div class="col-6 mt-3">
@@ -171,19 +170,16 @@
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Tipo material <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" id="tipoMaterial" aria-label=".form-select-sm example">
-                        <option selected value="">Seleccione material</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="1">Madera</option>
+                        <option value="2">Acero</option>
+                        <option value="3">Metal</option>
                       </select>
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Estado <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" id="estado" aria-label=".form-select-sm example">
-                        <option selected value="">Seleccione estado</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
                       </select>
                     </div>
                   </div>  
@@ -224,14 +220,41 @@
       e.preventDefault();
     });
     $("#add").on('click', function(){
+      //Variables del formulario
       const nombre = $("#nombre").val();
       const cantidad = $("#cantidad").val();
       const proveedor = $("#proveedor").val();
       const precio = $("#price").val();
       const tipoMaterial = $("#tipoMaterial").val();
       const estado = $("#estado").val();
+
+      //Validaciones
       const letras = /^[A-Za-z]+$/;
-      if (!letras.test(nombre) || cantidad <= 0 || !numeros.test(cantidad) || proveedor.length <=0 || )
+      const numeros = /^[0-9]^/;
+
+      if (!letras.test(nombre) || cantidad <= 0 || !numeros.test(cantidad) || proveedor.length <=0 || !numeros.test(precio) || tipoMaterial.length <= 0 || estado.length <= 0){
+        $.confirm({
+            title:"Error",
+            content:"No deben haber campos vacios",
+            icon: 'fa fa-xmark',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'red'
+        });
+      }else{
+        $.confirm({
+            title:"Success",
+            content:"Material añadido con exito",
+            icon: 'fa fa-check',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'green',
+        });
+      }
     })
   </script>
   </body>
