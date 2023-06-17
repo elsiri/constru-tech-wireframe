@@ -8,16 +8,11 @@
     <meta name="generator" content="Hugo 0.84.0">
     <title>Constru-tech</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"/>
-    
-    
-
+   
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/jquery-confirm.min.css">
     <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -153,32 +148,126 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-6 mt-3">
-                      <label for="nombre" class="form-label">Nombre<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="" aria-label="Nombre" required>
+                      <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" placeholder="" aria-label="Nombre" id="name">
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Estado <span class="text-danger">*</span></label>
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected>Seleccione estado</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                      <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="estado">
+                        <option selected value="">Seleccione estado</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
                       </select>
                     </div>
                     <div class="col-12 mt-3">
-                      <label for="direccion" class="form-label">Permisos del Rol<span class="text-danger">*</span></label>
-                      <select name="example2" id="example2" class="form-control" multiple="multiple" style="display: none;">
-                        <option value="1">Obras</option>
-                        <option value="2">Proveedores</option>
-                        <option value="3">Compras</option>
-                      </select>
+                      <label for="direccion" class="form-label">Permisos del Rol <span class="text-danger">*</span></label>
+                      <div class="accordion" id="accordionExample">
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Obras
+                                </label>
+                              </div>
+                            </button>
+                          </h2>
+                          <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Consultar
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Agregar
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Editar
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Eliminar
+                                </label>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Materiales
+                                </label>
+                              </div>
+                            </button>
+                          </h2>
+                          <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                             <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Consultar
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Agregar
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Editar
+                                </label>
+                              </div>
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Eliminar
+                                </label>
+                              </div>
+                            </div>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="accordion-item">
+                          <h2 class="accordion-header" id="headingThree">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                              <div class="form-check">
+                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                <label class="form-check-label" for="flexCheckDefault">
+                                  Empleados
+                                </label>
+                              </div>
+                            </button>
+                          </h2>
+                          <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                            <div class="accordion-body">
+                              <strong>This is the third item's accordion body.</strong> It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the <code>.accordion-body</code>, though the transition does limit overflow.
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>  
                 </div>
                 <div class="card-footer text-center">
                   <div class="row">
                     <div class="col-md-6">
-                      <button type="submit" class="btn btn-primary w-50" href="roles.html"><h4>Agregar</h4></button>
+                      <button type="submit" class="btn btn-primary w-50" href="roles.html" id="add"><h4>Agregar</h4></button>
                     </div>
                     <div class="col-md-6">
                       <a type="button" href="roles.html" class="btn btn-danger w-50"><h4>Cancelar</h4></a>
@@ -194,19 +283,51 @@
   </div>
 </div>
 
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.0/jquery.slim.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.1/js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
-<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="https://kit.fontawesome.com/38595e06c7.js" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-<script src="dashboard.js"></script>
-<script src="https://unpkg.com/feather-icons"></script>
+<script type="text/javascript" src="js/jquery-3.7.0.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
+  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
+  <script src="js/38595e06c7.js" crossorigin="anonymous"></script>
+  <script src="js/jquery-confirm.min.js"></script>
   <script>
-    feather.replace()
-    $("#example2").bsMultiSelect();
+    $("#empleado").bsMultiSelect();
+    $("#rol").bsMultiSelect();
+    $("#form").submit(function(e){
+        e.preventDefault();
+    });
+    $('#add').on('click', function(){
+      const empleado = $("#empleado").val();
+      const estado = $("#estado").val();
+      const rol = $("#rol").val();
+      const pw = $("#pw").val();
+      const cpw=$("#cpw").val();
+          console.log(empleado,estado,rol,pw,cpw)
+      if (empleado.length <=0 || estado.length <=0 || rol.length <=0 || pw == null || pw =='' || cpw== null || cpw=='') {
+        
+        $.confirm({
+            title:"Error",
+            content:"No deben haber campos vacios",
+            icon: 'fa fa-xmark',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'red',
+        });        
+      }else{
+        $.confirm({
+            title:"Success",
+            content:"Usuario registrado con exito",
+            icon: 'fa fa-check',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',  
+            closeAnimation: 'news',
+            type: 'green',
+        });         
+      }
+    });
   </script>
   </body>
 </html>
