@@ -223,7 +223,7 @@
 
       //Validaciones
       const letras = /^[A-Za-z]+$/;
-      const numeros = /^[0-9]^/;
+      const numeros = /^[0-9]+$/;
 
       if (!letras.test(nombre) || cantidad <= 0 || !numeros.test(cantidad) || proveedor.length <=0 || !numeros.test(precio) || tipoMaterial.length <= 0 || estado.length <= 0){
         $.confirm({
@@ -245,7 +245,7 @@
             closeIcon: true,
             animation: 'news',
             closeAnimation: 'news',
-            type: 'green',
+            type: 'green'
         });
       }
     })
