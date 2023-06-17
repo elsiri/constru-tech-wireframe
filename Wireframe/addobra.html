@@ -7,12 +7,12 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
     <title>Constru-tech</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" 
-    crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/themes-jquery-ui.css">
+    <link href="css/dashboard.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <style>
@@ -40,9 +40,6 @@
           animation-duration: 3s;
       }      
     </style>
-
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
   </head>
   <body>
     
@@ -164,9 +161,9 @@
                       <label for="correo" class="form-label">Dirección <span class="text-danger">*</span></label>
                       <select id="direccion" class="form-select form-select-sm" aria-label=".form-select-sm example">
                         <option selected value="">Seleccione direccion</option>
-                        <option value="1">Calle 103</option>
-                        <option value="2">Cra 49</option>
-                        <option value="3">Calle 99</option>
+                        <option value="Calle 103">Calle 103</option>
+                        <option value="Cra 49">Cra 49</option>
+                        <option value="Calle 99">Calle 99</option>
                       </select>
                     </div>
                     <div class="col-6 mt-3">
@@ -175,7 +172,7 @@
                     </div>
                     <div class="col-6 mt-3">
                       <label for="fechaini" class="form-label">Fecha inicio<span class="text-danger">*</span></label>
-                      <input id="fechaini" type="date" class="form-control" placeholder="Tiempo" aria-label="Teléfono">
+                      <input id="fechaini" type="text" class="form-control" placeholder="" aria-label="Fecha">
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Empleados encargados<span class="text-danger">*</span></label>
@@ -216,52 +213,70 @@
   </div>
 </div>
 
-  <script type="text/javascript" src="js/jquery-3.7.0.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+  <script src="js/jquery-ui.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
   <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-  <script src="js/38595e06c7.js" crossorigin="anonymous"></script>
+  <script src="js/38595e06c7.js"></script>
   <script src="js/jquery-confirm.min.js"></script>
+  <script src="js/validaciones.js"></script>
   <script>
+    $(function(){
+      $("#fechaini").datepicker({
+        dateFormat: "yy-mm-dd",
+        defaultDate:+7
+      });
+      $("#fechaini").datepicker("option", "showAnim", "slide");
+      $("#fechaini").datepicker({minDate: -1, maxDate:"+10D"});
+    });
     $("#example").bsMultiSelect();
     $("#example2").bsMultiSelect();
-    $("#fechaini").datepicker();
+
     $("#fechafin").datepicker();
     $("#form").submit(function(e){
         e.preventDefault();
     });
-    $('#add').on('click', function(){
-      const cliente = $("#cliente").val();
-      const direccion = $("#dir").val();
-      const descripcion = $("#descripcion").val();
-      const fechaini = $("#fechaini").val();
-      const selectEmpl = $("#example2").val();
-      const selectMat = $("#example").val(); 
-      if (cliente ==null || cliente =='' || selectEmpl.length <= 0 || selectMat.length <= 0 || fechaini == null || fechaini =='') {
-        $.confirm({
-            title:"Error",
-            content:"No deben haber campos vacios",
-            icon: 'fa fa-xmark',
-            theme: 'modern',
-            closeIcon: true,
-            animation: 'news',
-            closeAnimation: 'news',
-            type: 'red',
-        });        
-      }else{
-        $.confirm({
-            title:"Success",
-            content:"Obra ingresada con exito",
-            icon: 'fa fa-check',
-            theme: 'modern',
-            closeIcon: true,
-            animation: 'news',
-            closeAnimation: 'news',
-            type: 'green',
-        });         
-      }
-
+    $('#add').on('click', async function(){
+      let cliente = $("#cliente").val();
+      let direccion = $("#direccion").val();
+      let descripcion = $("#descripcion").val();
+      let fechaini = $("#fechaini").val();
+      let selectEmpl = $("#example2").val();
+      let selectMat = $("#example").val();
+      console.log(fechaini)
+      let errors = []
+      await errors.push(alertconfirm("Cliente", cliente,'',''))
+      await errors.push(alertconfirm("Direccion", direccion,'string',7))
+      await errors.push(alertconfirm("Descripcion", descripcion,'string',10))
+      await errors.push(alertconfirm("Empleado", selectEmpl,'array',0))
+      await errors.push(alertconfirm("Material", selectMat,'array',0))            
+      const allcheck =  array => array.every(value => value === array[0])
+      const check = allcheck(errors)
+      //  if (check) {
+      //   $.confirm({
+      //       title:"Success",
+      //       content:"Obra ingresada con exito",
+      //       icon: 'fa fa-check',
+      //       theme: 'modern',
+      //       closeIcon: true,
+      //       animation: 'news',
+      //       closeAnimation: 'news',
+      //       type: 'green',
+      //   })     
+      // }else{
+      //     $.confirm({
+      //     title:"Error",
+      //     content:errors,
+      //     icon: 'fa fa-xmark',
+      //     theme: 'modern',
+      //     closeIcon: true,
+      //     animation: 'news',
+      //     closeAnimation: 'news',
+      //     type: 'red',
+      //   })
+      // }      
     });
   </script>
   </body>

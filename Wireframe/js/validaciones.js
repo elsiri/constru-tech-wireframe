@@ -40,3 +40,34 @@ function messagefunc(element, index, array) {
     document.getElementById("messages").innerHTML += '<div class="alert alert-danger" role="alert">Error '+element+'!</div>';
     console.log("a["+index+"] = " + element)
 }
+
+
+function alertconfirm(input,value='',type,length) {
+    let check = '';
+    let msg = '';
+        if (value == '' || value == null) {
+        check = check + 1
+        msg = msg + `${input} es requerido<br>`
+        }if (type && type =='string') {
+            if (length && value.length < length) {
+                check = check +  1
+                msg = msg + ` ${input} debe contener al menos ${length} caracteres<br>`
+            }            
+        } else if(type && type == 'int'){
+            if (value <= length) {
+                check = check + 1
+                msg = msg + ` ${input} debe ser mayor a ${length} <br>`
+            }
+        }else if(type && type =='array'){
+            if (value.length <= length) {
+                check = check + 1
+                msg = msg + ` ${input} Debe tener seleccionada al menos una opcion <br>`                
+            }
+        }
+    
+    if (check == '') {
+        return check;
+    } else {
+        return msg;
+    }
+}
