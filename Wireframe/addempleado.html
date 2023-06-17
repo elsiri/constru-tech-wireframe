@@ -8,16 +8,14 @@
     <meta name="generator" content="Hugo 0.84.0">
     <title>Constru-tech</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"/>
-    
-    
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/jquery-confirm.min.css">
     <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -35,10 +33,9 @@
       }
     </style>
 
-    
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
+
   </head>
   <body>
     
@@ -141,7 +138,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 ">
-            <form method="post">
+            <form id="form">
               <div class="card text-center w-100">
                 <div class="card-header bg-primary text-white">
                   <h2>Agregar empleado</h2>
@@ -150,42 +147,41 @@
                   <div class="row">
                     <div class="col-6 mt-3">
                       <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="Nombres y apellidos" aria-label="Nombre">
+                      <input type="text" class="form-control" id="nombre" placeholder="Nombres y apellidos" aria-label="Nombre">
                     </div>
                     <div class="col-6 mt-3">
                       <label for="correo" class="form-label">Correo electrónico <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico">
+                      <input type="text" class="form-control" id="email" placeholder="Correo electrónico" aria-label="Correo electrónico">
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Dirección <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="Dirección" aria-label="Dirección">
+                      <input type="text" class="form-control" id="direccion" placeholder="Dirección" aria-label="Dirección">
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Teléfono <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="Teléfono" aria-label="Teléfono">
+                      <input type="text" class="form-control" id="telefono" placeholder="Teléfono" aria-label="Teléfono">
                     </div>
                   
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Cédula<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="Cédula" aria-label="Teléfono">
+                      <input type="text" class="form-control" id="cc" placeholder="Cédula" aria-label="Teléfono">
                     </div>
                     
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Especialidad <span class="text-danger">*</span></label>
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected>Especialidad</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                      <select class="form-select form-select-sm" id="especialidad" aria-label=".form-select-sm example">
+                        <option value="" selected>Seleccione la especialidad</option>
+                        <option value="1">Plomero</option>
+                        <option value="2">Acabados</option>
+                        <option value="3">Pintura</option>
                       </select>
                     </div>
                     <div class="col-6 mt-3 offset-3">
                       <label for="direccion" class="form-label">Estado <span class="text-danger">*</span></label>
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected>Seleccione estado</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                      <select class="form-select form-select-sm" id="estado" aria-label=".form-select-sm example">
+                        <option value="" selected>Seleccione estado</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
                       </select>
                     </div>
                   </div>  
@@ -193,7 +189,7 @@
                 <div class="card-footer text-center">
                   <div class="row">
                     <div class="col-md-6">
-                      <button type="submit" class="btn btn-primary w-50" href="empleados.html"><h4>Agregar</h4></button>
+                      <button id="add" class="btn btn-primary w-50" href="empleados.html"><h4>Agregar</h4></button>
                     </div>
                     <div class="col-md-6">
                       <a type="button" href="empleados.html" class="btn btn-danger w-50"><h4>Cancelar</h4></a>
@@ -210,13 +206,57 @@
 </div>
 
 
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="https://kit.fontawesome.com/38595e06c7.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-  <script src="dashboard.js"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
+  <script type="text/javascript" src="js/jquery-3.7.0.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
+  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
+  <script src="js/38595e06c7.js" crossorigin="anonymous"></script>
+  <script src="js/jquery-confirm.min.js"></script>
   <script>
-    feather.replace()
+    $("#form").submit(function(e){
+      e.preventDefault();
+    });
+    $("#add").on('click', function(){
+      //Variables del formulario
+      const nombre = $("#nombre").val();
+      const email = $("#email").val();
+      const direccion = $("#direccion").val();
+      const telefono = $("#telefono").val();
+      const cedula = $("#cc").val();
+      const especialidad = $("#especialidad").val();
+      const estado = $("#estado").val();
+
+      //Validaciones
+      const letras = /^[A-Za-z]+$/;
+      const numeros = /^[0-9]+$/;
+      const email_valid = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+      const telefono_valid = /^\++([0-9]{1,10000})*([0-9]{5,20})+$/;
+
+      if (!letras.test(nombre) || !email_valid.test(email)  || direccion.length <= 0 || !telefono_valid.test(telefono) || !numeros.test(cedula) ||  especialidad.length <= 0 || estado.length <= 0){
+        $.confirm({
+            title:"Error",
+            content:"No deben haber campos vacios",
+            icon: 'fa fa-xmark',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'red'
+        });
+      }else{
+        $.confirm({
+            title:"Success",
+            content:"Material añadido con exito",
+            icon: 'fa fa-check',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'green',
+        });
+      }
+    })
   </script>
   </body>
 </html>
