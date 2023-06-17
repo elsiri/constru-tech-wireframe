@@ -8,16 +8,11 @@
     <meta name="generator" content="Hugo 0.84.0">
     <title>Constru-tech</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"/>
-    
-    
-
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/jquery-confirm.min.css">
     <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  
 
     <style>
       .bd-placeholder-img {
@@ -38,7 +33,6 @@
     
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
-    <!-- <link href="css/style.css" rel="stylesheet"> -->
   </head>
   <body>
     
@@ -141,7 +135,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 ">
-            <form method="post">
+            <form method="post" id="form">
               <div class="card text-center w-100">
                 <div class="card-header bg-primary text-white">
                   <h2>Agregar compra</h2>
@@ -150,8 +144,8 @@
                   <div class="row">
                     <div class="col-md-4 mt-3">
                       <label for="nombre" class="form-label">Proveedor <span class="text-danger">*</span></label>
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected>Seleccione proveedor</option>
+                      <select id="proveedor" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected value="">Seleccione proveedor</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
@@ -159,18 +153,18 @@
                     </div>
                     <div class="col-md-4 mt-3">
                       <label for="direccion" class="form-label">Fecha de compra <span class="text-danger">*</span></label>
-                      <input type="date" class="form-control" placeholder="Fecha de compra" aria-label="Dirección">
+                      <input id="fecha" type="date" class="form-control" placeholder="Fecha de compra" aria-label="Dirección" >
                     </div>
                     <div class="col-md-4 mt-3">
                       <label for="formFile" class="form-label">Seleccione factura de la compra</label>
-                      <input class="form-control" type="file" id="formFile">
+                      <input id="img" class="form-control" type="file" id="formFile" >
                     </div>
                   </div>
                     <hr>
                     <div class="row">
                     <div class="col-3 mt-3">
                       <label for="direccion" class="form-label">Categoria <span class="text-danger">*</span></label>
-                      <select class="form-select form-select-md" aria-label=".form-select-sm example">
+                      <select id="categoria" class="form-select form-select-md" aria-label=".form-select-sm example">
                         <option selected>Seleccione categoria</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
@@ -179,15 +173,15 @@
                     </div>
                     <div class="col-3 mt-3">
                       <label for="direccion" class="form-label">Nombre del producto <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="Nombre del material" aria-label="Teléfono">
+                      <input id="nomProduc" type="text" class="form-control" placeholder="Nombre del material" aria-label="Teléfono" >
                     </div>
                     <div class="col-2 mt-3">
                       <label for="direccion" class="form-label">Precio <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="Precio" aria-label="Teléfono">
+                      <input id="precio" type="text" class="form-control" placeholder="Precio" aria-label="Teléfono" >
                     </div>
                     <div class="col-2 mt-3">
                       <label for="correo" class="form-label">Cantidad <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="Cantidad" aria-label="Correo electrónico">
+                      <input id="cantidad" type="text" class="form-control" placeholder="Cantidad" aria-label="Correo electrónico" >
                     </div>
                     <div class="col-2">
                       <br>
@@ -199,7 +193,7 @@
                 <div class="card-footer text-center">
                   <div class="row">
                     <div class="col-md-6">
-                      <button type="submit" class="btn btn-primary w-50" href="compras.html"><h4>Agregar</h4></button>
+                      <button id="add" class="btn btn-primary w-50" ><h4>Agregar</h4></button>
                     </div>
                     <div class="col-md-6">
                       <a type="button" href="compras.html" class="btn btn-danger w-50"><h4>Cancelar</h4></a>
@@ -218,13 +212,52 @@
 </div>
 
 
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="https://kit.fontawesome.com/38595e06c7.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-  <script src="dashboard.js"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
-  <script>
-    feather.replace()
-  </script>
+<script type="text/javascript" src="js/jquery-3.7.0.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
+<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
+<script src="js/38595e06c7.js" crossorigin="anonymous"></script>
+<script src="js/jquery-confirm.min.js"></script>
+<script>
+  $("#form").submit(function(e){
+      e.preventDefault();
+  });
+  $('#add').on('click', function(){
+    const proveedor = $('#proveedor').val();
+    const fecha = $('#fecha').val();
+
+    const categoria = $('#categoria').val();
+    const nomProduc = $('#nomProduc').val();
+    const precio = $('#precio').val();
+    const cantidad = $('#cantidad').val();
+    
+
+    if (proveedor.length<=0 || fecha=='' || fecha==null  || categoria.length<=0 || nomProduc==null || nomProduc=='' || precio=='' || precio==null || cantidad==null || cantidad =='') {
+      $.confirm({
+          title:"Error",
+          content:"No deben haber campos vacios",
+          icon: 'fa fa-xmark',
+          theme: 'modern',
+          closeIcon: true,
+          animation: 'news',
+          closeAnimation: 'news',
+          type: 'red',
+      });        
+    }else{
+      $.confirm({
+          title:"Success",
+          content:"Usuario registrado con exito",
+          icon: 'fa fa-check',
+          theme: 'modern',
+          closeIcon: true,
+          animation: 'news',  
+          closeAnimation: 'news',
+          type: 'green',
+      });         
+    }
+  });
+</script>
+
   </body>
 </html>
