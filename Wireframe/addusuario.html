@@ -155,10 +155,10 @@
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Empleado <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="empleado">
-
-                        <option value="1">Jose</option>
-                        <option value="2">Pepito</option>
-                        <option value="3">Martín</option>
+                        <option selected value="">Seleccione empleado</option>
+                        <option value="1">Pepito</option>
+                        <option value="2">Martín</option>
+                        <option value="3">Jose</option>
                       </select>
                     </div>
                     <div class="col-6 mt-3">
@@ -170,8 +170,9 @@
                       </select>
                     </div>
                     <div class="col-6 mt-3">
-                      <label for="direccion" class="form-label" >Rol <span class="text-danger">*</span></label>
+                      <label for="direccion" class="form-label">Rol <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="rol">
+                        <option selected value="">Seleccione rol</option>
                         <option value="1">Administrador</option>
                         <option value="2">Secretaria</option>
                         <option value="3">Empleado</option>
@@ -207,8 +208,8 @@
   <script src="js/38595e06c7.js" crossorigin="anonymous"></script>
   <script src="js/jquery-confirm.min.js"></script>
   <script>
-    $("#empleado").bsMultiSelect();
-    $("#rol").bsMultiSelect();
+    
+    
     $("#form").submit(function(e){
         e.preventDefault();
     });
