@@ -165,7 +165,7 @@
                     <div class="col-3 mt-3">
                       <label for="direccion" class="form-label">Categoria <span class="text-danger">*</span></label>
                       <select id="categoria" class="form-select form-select-md" aria-label=".form-select-sm example">
-                        <option selected>Seleccione categoria</option>
+                        <option selected value="">Seleccione categoria</option>
                         <option value="1">One</option>
                         <option value="2">Two</option>
                         <option value="3">Three</option>
@@ -200,64 +200,76 @@
                     </div>
                   </div>
                 </div>
-                
               </div>
             </form>
-            
+
           </div>
         </div>
       </div>
     </main>
   </div>
 </div>
+<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
+  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
+  <script src="js/38595e06c7.js"></script>
+  <script src="js/jquery-confirm.min.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script>
+    $(function(){
+      $("#fecha").datepicker({
+        dateFormat: "yy-mm-dd",
+        defaultDate:+7
+      });
+      $("#fecha").datepicker("option", "showAnim", "slide");
+      $("#fecha").datepicker({minDate: -1, maxDate:"+10D"});
+    });
 
-
-<script type="text/javascript" src="js/jquery-3.7.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
-<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-<script src="js/38595e06c7.js" crossorigin="anonymous"></script>
-<script src="js/jquery-confirm.min.js"></script>
-<script>
-  $("#form").submit(function(e){
-      e.preventDefault();
-  });
-  $('#add').on('click', function(){
-    const proveedor = $('#proveedor').val();
-    const fecha = $('#fecha').val();
-
-    const categoria = $('#categoria').val();
-    const nomProduc = $('#nomProduc').val();
-    const precio = $('#precio').val();
-    const cantidad = $('#cantidad').val();
-    
-
-    if (proveedor.length<=0 || fecha=='' || fecha==null  || categoria.length<=0 || nomProduc==null || nomProduc=='' || precio=='' || precio==null || cantidad==null || cantidad =='') {
-      $.confirm({
+    $("#fechafin").datepicker();
+    $("#form").submit(function(e){
+        e.preventDefault();
+    });
+    $('#add').on('click', async function(){
+      let proveedor = $("#proveedor").val();
+      let categoria = $("#categoria").val();
+      let fecha = $('#fecha').val();
+      let precio = $('#precio').val();
+      let cantidad = $('#cantidad').val()
+      console.log(fecha)
+      let errors = []
+      await errors.push(alertconfirm("Proveedor", proveedor,'array',0));    
+      await errors.push(alertconfirm("Categoria", categoria,'array',0));
+      await errors.push(alertconfirm("Precio",precio,'string',3));
+      await errors.push(alertconfirm("Cantidad",cantidad,'string',1))
+      const allcheck =  array => array.every(value => value === array[0])
+      const check = allcheck(errors)
+       if (check) {
+        $.confirm({
+            title:"Success",
+            content:"Compra ingresada con exito",
+            icon: 'fa fa-check',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'green',
+        })     
+      }else{
+          $.confirm({
           title:"Error",
-          content:"No deben haber campos vacios",
+          content:errors,
           icon: 'fa fa-xmark',
           theme: 'modern',
           closeIcon: true,
           animation: 'news',
           closeAnimation: 'news',
           type: 'red',
-      });        
-    }else{
-      $.confirm({
-          title:"Success",
-          content:"Usuario registrado con exito",
-          icon: 'fa fa-check',
-          theme: 'modern',
-          closeIcon: true,
-          animation: 'news',  
-          closeAnimation: 'news',
-          type: 'green',
-      });         
-    }
-  });
-</script>
-
+        })
+      }      
+    });
+  </script>
   </body>
 </html>

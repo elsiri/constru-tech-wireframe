@@ -215,55 +215,69 @@
 </div>
 
 
-<script type="text/javascript" src="js/jquery-3.7.0.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
-<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-<script src="js/38595e06c7.js" crossorigin="anonymous"></script>
-<script src="js/jquery-confirm.min.js"></script>
-<script>
-  $("#form").submit(function(e){
+<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
+  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
+  <script src="js/38595e06c7.js"></script>
+  <script src="js/jquery-confirm.min.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script>
+
+    $("#form").submit(function(e){
       e.preventDefault();
   });
-  $('#add').on('click', function(){
-    const nombre = $("#nombre").val();
-    const nit = $("#nit").val();
-    const email = $('#email').val();
-    const direccion = $('#direccion').val();
-    const telefono = $('#telefono').val();
-    const estado = $('#estado').val();
-    const tipo= $('#tipo').val();
-    const contacto = $('#contacto').val();
-    const TelContacto = $('#TelContacto').val();
-    const EmailContacto = $('#EmailContacto').val();
-    
-
-    if (nombre=='' || nombre ==null || nit==null ||nit=='' || email==null || email=='' || direccion==null || direccion=='' || telefono==null || telefono=='' || estado.length <=0 || tipo.length <=0 || contacto==null || contacto=='' || TelContacto==null || TelContacto=='' || EmailContacto==null || EmailContacto=='') {
-      $.confirm({
+  $('#add').on('click', async function(){
+    let nombre = $("#nombre").val();
+    let nit = $("#nit").val();
+    let email = $('#email').val();
+    let direccion = $('#direccion').val();
+    let telefono = $('#telefono').val();
+    let estado = $('#estado').val();
+    let tipo= $('#tipo').val();
+    let contacto = $('#contacto').val();
+    let TelContacto = $('#TelContacto').val();
+    let EmailContacto = $('#EmailContacto').val();
+      let errors = []
+      await errors.push(alertconfirm("Nombre", nombre,'string',6));    
+      await errors.push(alertconfirm("NIT", nit,'string',11));
+      await errors.push(alertconfirm("Email",email,'string',10));
+      await errors.push(alertconfirm("Dirección",direccion,'string',16));
+      await errors.push(alertconfirm("Telefono",telefono,'string',10));
+      await errors.push(alertconfirm("Estado",estado,'array',''));
+      await errors.push(alertconfirm("Tipo de proveedor",tipo,'array',''));
+      await errors.push(alertconfirm("Nombre del contacto",contacto,'string',8));
+      await errors.push(alertconfirm("Telefono del contacto",TelContacto,"string",10));
+      await errors.push(alertconfirm("Email del contacto",EmailContacto,"string",10))
+      const allcheck =  array => array.every(value => value === array[0])
+      const check = allcheck(errors)
+       if (check) {
+        $.confirm({
+            title:"Success",
+            content:"Proveedor editado con exito",
+            icon: 'fa fa-check',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'green',
+        })     
+      }else{
+          $.confirm({
           title:"Error",
-          content:"No deben haber campos vacios",
+          content:errors,
           icon: 'fa fa-xmark',
           theme: 'modern',
           closeIcon: true,
           animation: 'news',
           closeAnimation: 'news',
           type: 'red',
-      });        
-    }else{
-      $.confirm({
-          title:"Success",
-          content:"Usuario registrado con exito",
-          icon: 'fa fa-check',
-          theme: 'modern',
-          closeIcon: true,
-          animation: 'news',  
-          closeAnimation: 'news',
-          type: 'green',
-      });         
-    }
-  });
-</script>
+        })
+      }      
+    });
+  </script>
 
   </body>
 </html>

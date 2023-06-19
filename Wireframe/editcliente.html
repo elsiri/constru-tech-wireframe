@@ -189,48 +189,60 @@
     </main>
   </div>
 </div>
-<script type="text/javascript" src="js/jquery-3.7.0.min.js"></script>
+<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+<script src="js/jquery-ui.js"></script>
 <script src="js/bootstrap.min.js"></script>
 <script src="js/popper.min.js"></script>
 <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
 <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-<script src="js/38595e06c7.js" crossorigin="anonymous"></script>
+<script src="js/38595e06c7.js"></script>
 <script src="js/jquery-confirm.min.js"></script>
+<script src="js/validaciones.js"></script>
 <script>
+  
   $("#form").submit(function(e){
       e.preventDefault();
   });
-  $('#add').on('click', function(){
-    const nombre = $("#nombre").val();
-    const email = $("#email").val();
-    const direccion = $('#direccion').val();
-    const telefono = $('#telefono').val();
-    const cedula = $('#cedula').val();
-    const estado = $('#estado').val();
+  $('#add').on('click', async function(){
+    let cliente = $("#nombre").val();
+    let email = $("#email").val();
+    let direccion = $("#direccion").val();
+    let telefono = $("#telefono").val();
+    let cedula = $("#cedula").val();
+    let estado = $("#estado").val();
 
-    if (nombre=='' || nombre ==null || email==null || email=='' || direccion=='' || direccion==null || telefono=='' || telefono==null || cedula=='' || cedula==null || estado.length<=0) {
+    let errors = []
+    await errors.push(alertconfirm("Nombre", cliente,'string',8))
+    await errors.push(alertconfirm("Email", email,'string',10))
+    await errors.push(alertconfirm("Dirección", direccion,'string',10))
+    await errors.push(alertconfirm("Telefono", telefono,'string',10))
+    await errors.push(alertconfirm("cedula", cedula,'string',10))
+    await errors.push(alertconfirm("Estado",estado,'array',0))            
+    const allcheck =  array => array.every(value => value === array[0])
+    const check = allcheck(errors)
+     if (check) {
       $.confirm({
-          title:"Error",
-          content:"No deben haber campos vacios",
-          icon: 'fa fa-xmark',
+          title:"Success",
+          content:"Cliente editado con exito",
+          icon: 'fa fa-check',
           theme: 'modern',
           closeIcon: true,
           animation: 'news',
           closeAnimation: 'news',
-          type: 'red',
-      });        
-    }else{
-      $.confirm({
-          title:"Success",
-          content:"Usuario registrado con exito",
-          icon: 'fa fa-check',
-          theme: 'modern',
-          closeIcon: true,
-          animation: 'news',  
-          closeAnimation: 'news',
           type: 'green',
-      });         
-    }
+      })     
+    }else{
+        $.confirm({
+        title:"Error",
+        content:errors,
+        icon: 'fa fa-xmark',
+        theme: 'modern',
+        closeIcon: true,
+        animation: 'news',
+        closeAnimation: 'news',
+        type: 'red',
+      })
+    }      
   });
 </script>
   </body>
