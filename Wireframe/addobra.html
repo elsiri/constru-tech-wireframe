@@ -15,6 +15,7 @@
     <link href="css/dashboard.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -23,7 +24,6 @@
         -moz-user-select: none;
         user-select: none;
       }
-
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
@@ -254,29 +254,29 @@
       await errors.push(alertconfirm("Material", selectMat,'array',0))            
       const allcheck =  array => array.every(value => value === array[0])
       const check = allcheck(errors)
-      //  if (check) {
-      //   $.confirm({
-      //       title:"Success",
-      //       content:"Obra ingresada con exito",
-      //       icon: 'fa fa-check',
-      //       theme: 'modern',
-      //       closeIcon: true,
-      //       animation: 'news',
-      //       closeAnimation: 'news',
-      //       type: 'green',
-      //   })     
-      // }else{
-      //     $.confirm({
-      //     title:"Error",
-      //     content:errors,
-      //     icon: 'fa fa-xmark',
-      //     theme: 'modern',
-      //     closeIcon: true,
-      //     animation: 'news',
-      //     closeAnimation: 'news',
-      //     type: 'red',
-      //   })
-      // }      
+       if (check) {
+        $.confirm({
+            title:"Success",
+            content:"Obra ingresada con exito",
+            icon: 'fa fa-check',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'green',
+        })     
+      }else{
+          $.confirm({
+          title:"Error",
+          content:errors,
+          icon: 'fa fa-xmark',
+          theme: 'modern',
+          closeIcon: true,
+          animation: 'news',
+          closeAnimation: 'news',
+          type: 'red',
+        })
+      }      
     });
   </script>
   </body>
