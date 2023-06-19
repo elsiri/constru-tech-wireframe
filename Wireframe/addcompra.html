@@ -10,10 +10,11 @@
 
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/themes-jquery-ui.css">
+    <link href="css/dashboard.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-  
-
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -28,11 +29,17 @@
           font-size: 3.5rem;
         }
       }
+      li.badge>button{
+        line-height: 0.8em !important;
+      }
+      li.badge>span{
+        color: black !important;
+      }
+      .jconfirm .jconfirm-box.jconfirm-animation-news{
+          transform: rotate(400deg) scale(0);
+          animation-duration: 3s;
+      }      
     </style>
-
-    
-    <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
   </head>
   <body>
     
@@ -146,14 +153,14 @@
                       <label for="nombre" class="form-label">Proveedor <span class="text-danger">*</span></label>
                       <select id="proveedor" class="form-select form-select-sm" aria-label=".form-select-sm example">
                         <option selected value="">Seleccione proveedor</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="1">Homecenter</option>
+                        <option value="2">Corona</option>
+                        <option value="3">Pintuco</option>
                       </select>
                     </div>
                     <div class="col-md-4 mt-3">
                       <label for="direccion" class="form-label">Fecha de compra <span class="text-danger">*</span></label>
-                      <input id="fecha" type="date" class="form-control" placeholder="Fecha de compra" aria-label="Dirección" >
+                      <input id="fecha" type="text" class="form-control" placeholder="Fecha de compra" aria-label="Dirección" >
                     </div>
                     <div class="col-md-4 mt-3">
                       <label for="formFile" class="form-label">Seleccione factura de la compra</label>
@@ -161,34 +168,34 @@
                     </div>
                   </div>
                     <hr>
-                    <div class="row">
-                    <div class="col-3 mt-3">
-                      <label for="direccion" class="form-label">Categoria <span class="text-danger">*</span></label>
-                      <select id="categoria" class="form-select form-select-md" aria-label=".form-select-sm example">
-                        <option selected value="">Seleccione categoria</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
-                    </div>
-                    <div class="col-3 mt-3">
-                      <label for="direccion" class="form-label">Nombre del producto <span class="text-danger">*</span></label>
-                      <input id="nomProduc" type="text" class="form-control" placeholder="Nombre del material" aria-label="Teléfono" >
-                    </div>
-                    <div class="col-2 mt-3">
-                      <label for="direccion" class="form-label">Precio <span class="text-danger">*</span></label>
-                      <input id="precio" type="text" class="form-control" placeholder="Precio" aria-label="Teléfono" >
-                    </div>
-                    <div class="col-2 mt-3">
-                      <label for="correo" class="form-label">Cantidad <span class="text-danger">*</span></label>
-                      <input id="cantidad" type="text" class="form-control" placeholder="Cantidad" aria-label="Correo electrónico" >
-                    </div>
-                    <div class="col-2">
-                      <br>
-                      <br>
-                      <button class="btn btn-success"><span data-feather="plus-square"></span></button>
-                    </div>
-                  </div>  
+                  <div id="producto" class="row">
+                    <div id="detalle" class="row">
+                      <div class="col-3 mt-3">
+                        <label for="direccion" class="form-label">Categoria <span class="text-danger">*</span></label>
+                        <select id="categoria" class="form-select form-select-md" aria-label=".form-select-sm example">
+                          <option selected value="">Seleccione categoria</option>
+                          <option value="1">Ceramica</option>
+                          <option value="2">Pintura</option>
+                          <option value="3">Tuberia</option>
+                        </select>
+                      </div>
+                      <div class="col-3 mt-3">
+                        <label for="direccion" class="form-label">Nombre del producto <span class="text-danger">*</span></label>
+                        <input id="nomProduc" type="text" class="form-control" placeholder="Nombre del producto" aria-label="Teléfono" >
+                      </div>
+                      <div class="col-3 mt-3">
+                        <label for="direccion" class="form-label">Precio <span class="text-danger">*</span></label>
+                        <input id="precio" type="text" class="form-control" placeholder="Precio" aria-label="Teléfono" >
+                      </div>
+                      <div class="col-3 mt-3">
+                        <label for="correo" class="form-label">Cantidad <span class="text-danger">*</span></label>
+                        <input id="cantidad" type="text" class="form-control" placeholder="Cantidad" aria-label="Correo electrónico" >
+                      </div>
+                    </div>  
+                  </div>
+                    <div class="col-md-12 my-4">
+                      <button id="" class="btn btn-success duplicate">Agregar fila <i class="fa fa-plus"></i></button>
+                    </div>                  
                 </div>
                 <div class="card-footer text-center">
                   <div class="row">
@@ -221,12 +228,16 @@
   <script>
     $(function(){
       $("#fecha").datepicker({
-        dateFormat: "yy-mm-dd",
+        dateFormat: "yy/mm/dd",
         defaultDate:+7
       });
       $("#fecha").datepicker("option", "showAnim", "slide");
-      $("#fecha").datepicker({minDate: -1, maxDate:"+10D"});
+
     });
+
+   $(".duplicate").click(function(){
+      $("#detalle").clone().appendTo("#producto");
+   });    
 
     $("#fechafin").datepicker();
     $("#form").submit(function(e){
@@ -234,16 +245,19 @@
     });
     $('#add').on('click', async function(){
       let proveedor = $("#proveedor").val();
-      let categoria = $("#categoria").val();
+      let nomProduc = $("#nomProduc").val();
       let fecha = $('#fecha').val();
       let precio = $('#precio').val();
       let cantidad = $('#cantidad').val()
+      let img = $('#img').val()
       console.log(fecha)
       let errors = []
       await errors.push(alertconfirm("Proveedor", proveedor,'array',0));    
-      await errors.push(alertconfirm("Categoria", categoria,'array',0));
-      await errors.push(alertconfirm("Precio",precio,'string',3));
-      await errors.push(alertconfirm("Cantidad",cantidad,'string',1))
+      await errors.push(alertconfirm("Producto", nomProduc,'array',0));
+      await errors.push(alertconfirm("Fecha de compra", fecha,'date',''));
+      await errors.push(alertconfirm("Imagen factura", img,'string',''));       
+      await errors.push(alertconfirm("Precio",precio,'int',''));
+      await errors.push(alertconfirm("Cantidad",cantidad,'int',0))
       const allcheck =  array => array.every(value => value === array[0])
       const check = allcheck(errors)
        if (check) {

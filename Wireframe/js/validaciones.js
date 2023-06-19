@@ -1,3 +1,7 @@
+$.getScript("./js/moment.js", function() {
+        console.log("moment library loaded")
+});
+
 function check() {
 
     document.getElementById("messages").innerHTML = "";
@@ -42,26 +46,40 @@ function messagefunc(element, index, array) {
 }
 
 
-function alertconfirm(input,value='',type,length) {
+function alertconfirm(input,value,type,length) {
     let check = '';
     let msg = '';
+    let checkFormat = moment(value, "YYYY/MM/DD", true).isValid()
+    const onlyNumbers = /^\d+$/;
         if (value == '' || value == null) {
         check = check + 1
-        msg = msg + `${input} es requerido<br>`
+        msg = msg + `<span class="text-danger text-center">*${input} es requerido </span><br>`
         }if (type && type =='string') {
-            if (length && value.length < length) {
+            if (length && value.length < 3) {
                 check = check +  1
-                msg = msg + ` ${input} debe contener al menos ${length} caracteres<br>`
-            }            
+                msg = msg + `<span class="text-danger text-center">-${input} debe contener al menos 3 caracteres </span><br>`
+            }else if (length && value.length > length) {
+                check = check +  1
+                msg = msg + `<span class="text-danger text-center">-${input} debe contener menos de ${length} caracteres </span><br>`
+            }          
         } else if(type && type == 'int'){
             if (value <= length) {
                 check = check + 1
-                msg = msg + ` ${input} debe ser mayor a ${length} <br>`
+                msg = msg + `<span class="text-danger text-center">-${input} debe ser mayor a ${length} </span><br>`
+            }
+            if(onlyNumbers.test(value)==false){
+                check = check + 1
+                msg = msg + `<span class="text-danger text-center">-${input} solo se permiten numeros </span><br>`                
             }
         }else if(type && type =='array'){
             if (value.length <= length) {
                 check = check + 1
-                msg = msg + ` ${input} Debe tener seleccionada al menos una opcion <br>`                
+                msg = msg + `<span class="text-danger text-center">-${input} Debe tener seleccionada al menos una opcion </span><br>`                
+            }
+        }else if(type && type =='date'){
+            if (checkFormat ===false) {
+                check = check + 1
+                msg = msg + `<span class="text-danger text-center">-${input}, Formato de fecha no valido, debe ser AÑO/MES/DIA </span><br>`
             }
         }
     

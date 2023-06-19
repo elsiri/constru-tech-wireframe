@@ -149,7 +149,7 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-6 mt-3">
-                        <label for="direccion" class="form-label">Cliente<span class="text-danger">*</span></label>
+                        <label for="cliente" class="form-label">Cliente<span class="text-danger">*</span></label>
                         <select id="cliente" class="form-select form-select-sm" aria-label=".form-select-sm example">
                           <option value="">Seleccione cliente</option>
                           <option value="1" selected>Ronald</option>
@@ -158,25 +158,25 @@
                         </select>
                     </div>
                     <div class="col-6 mt-3">
-                      <label for="correo" class="form-label">Dirección <span class="text-danger">*</span></label>
+                      <label for="direccion" class="form-label">Dirección <span class="text-danger">*</span></label>
                       <select id="direccion" class="form-select form-select-sm" aria-label=".form-select-sm example">
                         <option value="">Seleccione direccion</option>
-                        <option value="1" selected>Calle 103</option>
-                        <option value="2">Cra 49</option>
-                        <option value="3">Calle 99</option>
+                        <option value="Calle 103" selected>Calle 103</option>
+                        <option value="Cra 49">Cra 49</option>
+                        <option value="Calle 99">Calle 99</option>
                       </select>
                     </div>
                     <div class="col-6 mt-3">
-                      <label for="direccion" class="form-label">Obra<span class="text-danger">*</span></label>
+                      <label for="descripcion" class="form-label">Obra<span class="text-danger">*</span></label>
                       <input id="descripcion" type="text" class="form-control" placeholder="Descripcion de la obra" aria-label="Dirección" value="Acabado exterior">
                     </div>
                     <div class="col-6 mt-3">
                       <label for="fechaini" class="form-label">Fecha inicio<span class="text-danger">*</span></label>
-                      <input id="fechaini" type="date" class="form-control" placeholder="Tiempo" aria-label="Teléfono">
+                      <input id="fechaini" type="text" class="form-control" placeholder="Tiempo" aria-label="fechaini">
                     </div>
                     <div class="col-6 mt-3">
                       <label for="fechafin" class="form-label">Fecha fin<span class="text-danger">*</span></label>
-                      <input id="fechafin" type="date" class="form-control" placeholder="Tiempo" aria-label="Teléfono">
+                      <input id="fechafin" type="text" class="form-control" placeholder="Tiempo" aria-label="fechafin">
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Empleados encargados<span class="text-danger">*</span></label>
@@ -223,49 +223,72 @@
   <script src="js/popper.min.js"></script>
   <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
   <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-  <script src="js/38595e06c7.js" crossorigin="anonymous"></script>
+  <script src="js/38595e06c7.js"></script>
   <script src="js/jquery-confirm.min.js"></script>
-  <script>
+  <script src="js/validaciones.js"></script>
+  <script src="js/moment.js"></script>
+  <script>   
+    $("#fechaini").datepicker({ dateFormat: 'yy/mm/dd' }).datepicker("setDate", '+2m');
+    $("#fechafin").datepicker({ dateFormat: 'yy/mm/dd' }).datepicker("setDate", '2023/06/17');
     $("#example").bsMultiSelect();
     $("#example2").bsMultiSelect();
-    $("#fechaini").datepicker(defaultDate , "15/06/2023");
-    $("#fechafin").datepicker("setDate" , "15/07/2023");
     $("#form").submit(function(e){
         e.preventDefault();
     });
-    
-    // $("#fechaini").val("15/06/2023")
-    // $("#fechafin").val("15/07/2023")
-    $('#edit').on('click', function(){
+  
+    $('#edit').on('click', async function(){
       const cliente = $("#cliente").val();
-      const direccion = $("#dir").val();
+      const direccion = $("#direccion").val();
       const descripcion = $("#descripcion").val();
       const fechaini = $("#fechaini").val();
       const fechafin = $("#fechafin").val();
       const selectEmpl = $("#example2").val();
       const selectMat = $("#example").val(); 
-      if (cliente ==null || cliente =='' || selectEmpl.length <= 0 || selectMat.length <= 0 || fechaini == null || fechaini =='' || fechaini ==null || fechaini =='') {
+      let errors = []
+      await errors.push(alertconfirm("Cliente", cliente,'',''))
+      await errors.push(alertconfirm("Fecha inicio", fechaini,'date',''))
+      await errors.push(alertconfirm("Fecha fin", fechafin,'date',''))
+      await errors.push(alertconfirm("Direccion", direccion,'string',20))
+      await errors.push(alertconfirm("Descripcion", descripcion,'string',30))
+      await errors.push(alertconfirm("Empleado", selectEmpl,'array',0))
+      await errors.push(alertconfirm("Material", selectMat,'array',0)) 
+      const allcheck =  array => array.every(value => value === array[0])
+      const check = allcheck(errors)     
+      if (check) {
         $.confirm({
-            title:"Error",
-            content:"No deben haber campos vacios",
-            icon: 'fa fa-xmark',
-            theme: 'modern',
-            closeIcon: true,
-            animation: 'news',
-            closeAnimation: 'news',
-            type: 'red',
-        });        
-      }else{
-        $.confirm({
-            title:"Success",
-            content:"Obra ingresada con exito",
+            title:"Obra editada con exito!",
+            content:"Redirecionando a listado de obras...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,
             animation: 'news',
             closeAnimation: 'news',
             type: 'green',
-        });         
+            columnClass:'col-md-6 col-md-offset-3',
+            autoClose: 'okay|4000',
+            buttons: {
+                okay: function () {
+                  window.location.href = "obras.html";
+                },
+            }            
+        })        
+      }else{
+          $.confirm({
+          title:"Error",
+          content:errors,
+          icon: 'fa fa-xmark',
+          theme: 'modern',
+          closeIcon: true,
+          animation: 'news',
+          closeAnimation: 'news',
+          type: 'red',
+          columnClass:'col-md-6 col-md-offset-3',
+          buttons:{
+            Cerrar: function(){
+              
+            }
+          }
+        })        
       }
 
     });
