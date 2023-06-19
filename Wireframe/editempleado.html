@@ -8,12 +8,13 @@
     <meta name="generator" content="Hugo 0.84.0">
     <title>Constru-tech</title>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/themes-jquery-ui.css">
+    <link href="css/dashboard.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-
 
     <style>
       .bd-placeholder-img {
@@ -23,12 +24,21 @@
         -moz-user-select: none;
         user-select: none;
       }
-
       @media (min-width: 768px) {
         .bd-placeholder-img-lg {
           font-size: 3.5rem;
         }
       }
+      li.badge>button{
+        line-height: 0.8em !important;
+      }
+      li.badge>span{
+        color: black !important;
+      }
+      .jconfirm .jconfirm-box.jconfirm-animation-news{
+          transform: rotate(400deg) scale(0);
+          animation-duration: 3s;
+      }      
     </style>
 
     <!-- Custom styles for this template -->
@@ -36,7 +46,7 @@
 
   </head>
   <body>
-    
+
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Constru-tech</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -162,7 +172,7 @@
                       <label for="direccion" class="form-label">Cédula<span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="cc" placeholder="Cédula" aria-label="Teléfono">
                     </div>
-                  
+
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Especialidad <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" id="especialidad" aria-label=".form-select-sm example">
@@ -180,7 +190,7 @@
                         <option value="2">Inactivo</option>
                       </select>
                     </div>
-                  </div>  
+                  </div>
                 </div>
                 <div class="card-footer text-center">
                   <div class="row">
@@ -202,58 +212,43 @@
 </div>
 
 
-  <script type="text/javascript" src="js/jquery-3.7.0.min.js"></script>
+  <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+  <script src="js/jquery-ui.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/popper.min.js"></script>
   <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
   <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-  <script src="js/38595e06c7.js" crossorigin="anonymous"></script>
+  <script src="js/38595e06c7.js"></script>
   <script src="js/jquery-confirm.min.js"></script>
+  <script src="js/validaciones.js"></script>
   <script>
     $("#form").submit(function(e){
       e.preventDefault();
     });
-    $("#edit").on('click', function(){
+    $("#edit").on('click', async function(){
 
-      //Variables del formulario
-      const nombre = $("#nombre").val();
-      const email = $("#email").val();
-      const direccion = $("#direccion").val();
-      const telefono = $("#telefono").val();
-      const cedula = $("#cc").val();
-      const especialidad = $("#especialidad").val();
-      const estado = $("#estado").val();
+      // Variables del formulario
+      let nombre = $("#nombre").val();
+      let email = $("#email").val();
+      let direccion = $("#direccion").val();
+      let telefono = $("#telefono").val();
+      let cedula = $("#cc").val();
+      let especialidad = $("#especialidad").val();
+      let estado = $("#estado").val();
 
-      //Validaciones
-      const letras = /^[A-Za-z]+$/;
-      const numeros = /^[0-9]+$/;
-      const email_valid = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-      const telefono_valid = /^\++([0-9]{1,10000})*([0-9]{5,20})+$/;
+      let errors = []
 
-      if (!letras.test(nombre) || !email_valid.test(email)  ||  !telefono_valid.test
-      (telefono) || !numeros.test(cedula) || direccion.length < 1 || especialidad.length <= 0 || estado.length <= 0){
-        $.confirm({
-            title:"Error",
-            content:"No deben haber campos vacios",
-            icon: 'fa fa-xmark',
-            theme: 'modern',
-            closeIcon: true,
-            animation: 'news',
-            closeAnimation: 'news',
-            type: 'red'
-        });
-      }else{
-        $.confirm({
-            title:"Success",
-            content:"Material añadido con exito",
-            icon: 'fa fa-check',
-            theme: 'modern',
-            closeIcon: true,
-            animation: 'news',
-            closeAnimation: 'news',
-            type: 'green'
-        });
-      }
+      // Validaciones
+      // const letras = /^[A-Za-z]+$/;
+      // const numeros = /^[0-9]+$/;
+      // const email_valid = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
+      // const telefono_valid = /^([0-9]{5,10})+$/;
+
+      await errors.push(alertconfirm("Nombre", nombre, '', ''));
+      await errors.push(alertconfirm("Email", email, 'string', 9));
+      await errors.push(alertconfirm("Dirección", direccion, 'string', 10));
+      await errors.push(alertconfirm("Telefono"))
+
     })
   </script>
   </body>
