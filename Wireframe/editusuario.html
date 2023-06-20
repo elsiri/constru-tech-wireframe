@@ -139,7 +139,7 @@
             <form id="form">
               <div class="card text-center w-100">
                 <div class="card-header bg-primary text-white">
-                  <h2>Agregar usuario</h2>
+                  <h2>Editar usuario</h2>
                 </div>
                 <div class="card-body">
                   <div class="row">
@@ -182,7 +182,7 @@
                 <div class="card-footer text-center">
                   <div class="row">
                     <div class="col-md-6">
-                      <button class="btn btn-primary w-50" id="add" href="usuarios.html"><h4>Agregar</h4></button>
+                      <button class="btn btn-primary w-50" id="add" href="usuarios.html"><h4>Editar</h4></button>
                     </div>
                     <div class="col-md-6">
                       <a type="button" href="usuarios.html" class="btn btn-danger w-50"><h4>Cancelar</h4></a>
@@ -207,52 +207,61 @@
 </div>
 
 
-<script type="text/javascript" src="js/jquery-3.7.0.min.js"></script>
-<script src="js/bootstrap.min.js" integrity="sha512-EKWWs1ZcA2ZY9lbLISPz8aGR2+L7JVYqBAYTq5AXgBkSjRSuQEGqWx8R1zAX16KdXPaCjOCaKE8MCpU0wcHlHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="js/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/babel.bundle.esm.config.js"></script>
-<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/babel.bundle.umd.config.js"></script>
-<script src="js/bootstrap.bundle.min.js"></script>
-<script src="js/38595e06c7.js" crossorigin="anonymous"></script>
-<script src="dashboard.js"></script>
-<script src="js/jquery-confirm.min.js"></script>
-<script>
-  $("#empleado").bsMultiSelect();
-  $("#estado").bsMultiSelect();
-  $("#rol").bsMultiSelect();
-  $("#pw").val();
-  $("#cpw").val();
+<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
+  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
+  <script src="js/38595e06c7.js"></script>
+  <script src="js/jquery-confirm.min.js"></script>
+  <script src="js/validaciones.js"></script>
+  <script>
+    $("#form").submit(function(e){
+        e.preventDefault();
+    });
+    $('#add').on('click', async function(){
+      let empleado = $("#empleado").val();
+      let estado = $("#estado").val();
+      let rol = $("#rol").val();
+      let pw = $("#pw").val();
+      let cpw=$("#cpw").val();
 
-  $('#add').on('click', function(){
-    const empleado = $("#empleado").val();
-    const estado = $("#estado").val();
-    const rol = $("#rol").val();
-    const pw = $("pw").val();
-    const cpw=$("#cpw").val();
-    if (empleado.length <=0 || estado.length <=0 || rol.length <=0 || pw == null || pw =='' || cpw== null || cpw=='') {
-      $.confirm({
+      let errors = [];
+
+      await errors.push(alertconfirm("Contraseña", pw, 'string', 10));
+      await errors.push(alertconfirm("Confirmar contraseña", pw, 'string', 10));
+      await errors.push(alertconfirm("Empleado", empleado, 'array', 0));
+      await errors.push(alertconfirm("Rol", rol, 'array', 0));
+      await errors.push(alertconfirm("Estado", estado, 'array', 0));
+
+      const allcheck = array => array.every(value => value === [0]);
+      const check = allcheck(errors);
+
+      if (check) {
+        $.confirm({
+            title:"Success",
+            content:"Usuario registrado con exito",
+            icon: 'fa fa-check',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'green',
+        })     
+      }else{
+          $.confirm({
           title:"Error",
-          content:"No deben haber campos vacios",
+          content:errors,
           icon: 'fa fa-xmark',
           theme: 'modern',
           closeIcon: true,
           animation: 'news',
           closeAnimation: 'news',
           type: 'red',
-      });        
-    }else{
-      $.confirm({
-          title:"Success",
-          content:"Usuario registrado con exito",
-          icon: 'fa fa-check',
-          theme: 'modern',
-          closeIcon: true,
-          animation: 'news',  
-          closeAnimation: 'news',
-          type: 'green',
-      });         
-    }
-  });
+        })
+      }
+    });
 </script>
   </body>
 </html>

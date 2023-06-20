@@ -197,6 +197,7 @@
   <script src="js/38595e06c7.js"></script>
   <script src="js/jquery-confirm.min.js"></script>
   <script src="js/validaciones.js"></script>
+  <script src="js/moment.js"></script>
   <script>
     $("#form").submit(function(e){
         e.preventDefault();
@@ -207,7 +208,7 @@
 
       let errors = [];
 
-      await errors.push(alertconfirm("Nombre", modulo, 'array', 0));
+      await errors.push(alertconfirm("Modulo", modulo, 'array', 0));
       await errors.push(alertconfirm("Estado", estado, 'array', 0));
       const allcheck = array => array.every(value => value === [0]);
       const check = allcheck(errors);

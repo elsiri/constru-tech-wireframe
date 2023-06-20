@@ -144,20 +144,19 @@
                   <div class="row">
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Modulo <span class="text-danger">*</span></label>
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                      <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="modulo">
                         <option selected>Seleccione modulo</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="1">Compras</option>
+                        <option value="2">Empleados</option>
+                        <option value="3">Obras</option>
                       </select>
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Estado <span class="text-danger">*</span></label>
-                      <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                      <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="estado">
                         <option selected>Seleccione estado</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
                       </select>
                     </div>
                   </div>  
@@ -165,7 +164,7 @@
                 <div class="card-footer text-center">
                   <div class="row">
                     <div class="col-md-6">
-                      <button id="add" class="btn btn-primary w-50" href="obras.html"><h4>Agregar</h4></button>
+                      <button id="add" class="btn btn-primary w-50" href="permisos.html"><h4>Agregar</h4></button>
                     </div>
                     <div class="col-md-6">
                       <a type="button" href="permisos.html" class="btn btn-danger w-50"><h4>Cancelar</h4></a>
@@ -189,8 +188,7 @@
   </div>
 </div>
 
-
-  <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/popper.min.js"></script>
@@ -199,6 +197,7 @@
   <script src="js/38595e06c7.js"></script>
   <script src="js/jquery-confirm.min.js"></script>
   <script src="js/validaciones.js"></script>
+  <script src="js/moment.js"></script>
   <script>
     $("#form").submit(function(e){
         e.preventDefault();
@@ -209,8 +208,8 @@
 
       let errors = [];
 
-      await errors.push(alertconfirm("Nombre", modulo, 'array', ''));
-      await errors.push(alertconfirm("Estado", estado, 'array', ''));
+      await errors.push(alertconfirm("Modulo", modulo, 'array', 0));
+      await errors.push(alertconfirm("Estado", estado, 'array', 0));
       const allcheck = array => array.every(value => value === [0]);
       const check = allcheck(errors);
       
