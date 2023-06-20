@@ -143,11 +143,11 @@
                 <div class="card-body">
                   <div class="row">
                     <div class="col-6 mt-3">
-                        <label for="correo" class="form-label">Nombre <span class="text-danger">*</span></label>
+                        <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" id="nombre" placeholder="Nombre categoria" aria-label="Correo electrónico">
                       </div>
                       <div class="col-6 mt-3">
-                        <label for="direccion" class="form-label">Unidad de medida <span class="text-danger">*</span></label>
+                        <label for="unidadMedida" class="form-label">Unidad de medida <span class="text-danger">*</span></label>
                         <select class="form-select form-select-sm" id="unidadMedida" aria-label=".form-select-sm example">
                           <option value="" selected>Seleccione unidad</option>
                           <option value="1">m2 (Metro cuadrado)</option>
@@ -156,7 +156,7 @@
                         </select>
                       </div>
                     <div class="col-6 mt-3 offset-3">
-                      <label for="direccion" class="form-label">Estado <span class="text-danger">*</span></label>
+                      <label for="estado" class="form-label">Estado <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" id="estado" aria-label=".form-select-sm example">
                         <option value="" selected>Seleccione estado</option>
                         <option value="1">Activo</option>
@@ -204,51 +204,51 @@
   <script>
     $("#form").submit(function(e){
       e.preventDefault();
-  });
-  $('#edit').on('click', async function(){
+    });
+    $('#edit').on('click', async function(){
     let nombre = $("#nombre").val();
     let unidadMedida = $("#unidadMedida").val();
     let estado = $('#estado').val();
     let direccion = $('#direccion').val();
 
-      let errors = []
-      await errors.push(alertconfirm("Nombre", nombre,'string',6));    
-      await errors.push(alertconfirm("Unidad de medida", unidadMedida,'array',0));
-      await errors.push(alertconfirm("Estado",estado,'array',0));
+    let errors = []
+    await errors.push(alertconfirm("Nombre", nombre,'string',6));    
+    await errors.push(alertconfirm("Unidad de medida", unidadMedida,'array',0));
+    await errors.push(alertconfirm("Estado",estado,'array',0));
 
-      const allcheck =  array => array.every(value => value === array[0])
-      const check = allcheck(errors)
-      if (check) {
-        $.confirm({
-            title:"Categoria editada con exito!",
-            content:"Redirecionando a listado de categorias...",
-            icon: 'fa fa-check',
-            theme: 'modern',
-            closeIcon: true,
-            animation: 'news',
-            closeAnimation: 'news',
-            type: 'green',
-            columnClass:'col-md-6 col-md-offset-3',
-            autoClose: 'okay|4000',
-            buttons: {
-                okay: function () {
-                  window.location.href = "categorias.html";
-                },
-            }            
-        })     
-      }else{
-          $.confirm({
-          title:"Error",
-          content:errors,
-          icon: 'fa fa-xmark',
+    const allcheck =  array => array.every(value => value === array[0])
+    const check = allcheck(errors)
+    if (check) {
+      $.confirm({
+          title:"Categoria editada con exito!",
+          content:"Redirecionando a listado de categorias...",
+          icon: 'fa fa-check',
           theme: 'modern',
           closeIcon: true,
           animation: 'news',
           closeAnimation: 'news',
-          type: 'red',
-        })
-      }      
-    });
-</script>
+          type: 'green',
+          columnClass:'col-md-6 col-md-offset-3',
+          autoClose: 'okay|4000',
+          buttons: {
+              okay: function () {
+                window.location.href = "categorias.html";
+              },
+          }            
+      })     
+    }else{
+        $.confirm({
+        title:"Error",
+        content:errors,
+        icon: 'fa fa-xmark',
+        theme: 'modern',
+        closeIcon: true,
+        animation: 'news',
+        closeAnimation: 'news',
+        type: 'red',
+      })
+    }      
+  });
+  </script>
   </body>
 </html>
