@@ -11,6 +11,9 @@
    
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/themes-jquery-ui.css">
+    <link href="css/dashboard.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
@@ -139,7 +142,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 ">
-            <form method="post">
+            <form id="form">
               <div class="card text-center w-100">
                 <div class="card-header bg-primary text-white">
                   <h2>Agregar rol</h2>
@@ -148,7 +151,7 @@
                   <div class="row">
                     <div class="col-6 mt-3">
                       <label for="nombre" class="form-label">Nombre <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" placeholder="" aria-label="Nombre" id="name">
+                      <input type="text" class="form-control" placeholder="Ingrese el nombre del rol" aria-label="Nombre" id="name">
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Estado <span class="text-danger">*</span></label>
@@ -315,20 +318,19 @@
   <script src="js/jquery-confirm.min.js"></script>
   <script src="js/validaciones.js"></script>
   <script>
-    
     $("#form").submit(function(e){
         e.preventDefault();
     });
     $('#add').on('click', async function(){
       let estado = $("#estado").val();
       let nombre = $("#name").val();
-      let permisosRol = $('input[name="permiso"]:checked').val();
+      // let permisosRol = $('input[name="permiso"]:checked').val();
 
       let errors = [];
 
       await errors.push(alertconfirm("Nombre", nombre, 'string', ''));
       await errors.push(alertconfirm("Estado", estado, 'array', 0));
-      await errors.push(alertconfirm("Permisos del rol", permisosRol, 'array', 0));
+      // await errors.push(alertconfirm("Permisos del rol", permisosRol, 'array', 0));
 
       const allcheck = array => array.every(value => value === [0]);
       const check = allcheck(errors);
@@ -356,7 +358,6 @@
           type: 'red',
         })
       }
-
     });
   </script>
   </body>

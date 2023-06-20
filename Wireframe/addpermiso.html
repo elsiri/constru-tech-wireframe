@@ -8,16 +8,13 @@
     <meta name="generator" content="Hugo 0.84.0">
     <title>Constru-tech</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/dashboard/">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"/>
-    
-    
-
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/themes-jquery-ui.css">
+    <link href="css/dashboard.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
-<link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <style>
       .bd-placeholder-img {
@@ -168,7 +165,7 @@
                 <div class="card-footer text-center">
                   <div class="row">
                     <div class="col-md-6">
-                      <button type="submit" class="btn btn-primary w-50" href="obras.html"><h4>Agregar</h4></button>
+                      <button id="add" class="btn btn-primary w-50" href="obras.html"><h4>Agregar</h4></button>
                     </div>
                     <div class="col-md-6">
                       <a type="button" href="permisos.html" class="btn btn-danger w-50"><h4>Cancelar</h4></a>
@@ -193,13 +190,54 @@
 </div>
 
 
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="https://kit.fontawesome.com/38595e06c7.js" crossorigin="anonymous"></script>
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js" integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous"></script><script src="https://cdn.jsdelivr.net/npm/chart.js@2.9.4/dist/Chart.min.js" integrity="sha384-zNy6FEbO50N+Cg5wap8IKA4M/ZnLJgzc6w2NqACZaK0u0FXfOWRRJOnQtpZun8ha" crossorigin="anonymous"></script>
-  <script src="dashboard.js"></script>
-  <script src="https://unpkg.com/feather-icons"></script>
+  <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+  <script src="js/jquery-ui.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/popper.min.js"></script>
+  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
+  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
+  <script src="js/38595e06c7.js"></script>
+  <script src="js/jquery-confirm.min.js"></script>
+  <script src="js/validaciones.js"></script>
   <script>
-    feather.replace()
+    $("#form").submit(function(e){
+        e.preventDefault();
+    });
+    $('#add').on('click', async function(){
+      let modulo = $("#modulo").val();
+      let estado = $("#estado").val();
+
+      let errors = [];
+
+      await errors.push(alertconfirm("Nombre", modulo, 'array', ''));
+      await errors.push(alertconfirm("Estado", estado, 'array', ''));
+      const allcheck = array => array.every(value => value === [0]);
+      const check = allcheck(errors);
+      
+      if (check) {
+        $.confirm({
+            title:"Success",
+            content:"Rol modificado con exito",
+            icon: 'fa fa-check',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'green',
+        })     
+      }else{
+          $.confirm({
+          title:"Error",
+          content:errors,
+          icon: 'fa fa-xmark',
+          theme: 'modern',
+          closeIcon: true,
+          animation: 'news',
+          closeAnimation: 'news',
+          type: 'red',
+        })
+      }
+    });
   </script>
   </body>
 </html>
