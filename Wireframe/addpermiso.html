@@ -208,14 +208,14 @@
       let estado = $("#estado").val();
 
       let errors = []
-      await errors.push(alertconfirm("Modulo", Modulo,'array',0))
+      await errors.push(alertconfirm("Modulo", modulo,'array',0))
       await errors.push(alertconfirm("Estado", estado,'array',0))
            
       const allcheck =  array => array.every(value => value === array[0])
       const check = allcheck(errors)
        if (check) {
         $.confirm({
-            title:"Obra ingresada con exito!",
+            title:"Permiso registrado con exito!",
             content:"Redirecionando a listado de obras...",
             icon: 'fa fa-check',
             theme: 'modern',
@@ -227,7 +227,7 @@
             autoClose: 'okay|4000',
             buttons: {
                 okay: function () {
-                  window.location.href = "obras.html";
+                  window.location.href = "permisos.html";
                 },
             }            
         })     
