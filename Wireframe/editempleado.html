@@ -244,12 +244,41 @@
       // const email_valid = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
       // const telefono_valid = /^([0-9]{5,10})+$/;
 
-      await errors.push(alertconfirm("Nombre", nombre, '', ''));
-      await errors.push(alertconfirm("Email", email, 'string', 9));
+      await errors.push(alertconfirm("Nombre", nombre, 'string', 1));
+      await errors.push(alertconfirm("Email", email, 'email', 9));
       await errors.push(alertconfirm("Dirección", direccion, 'string', 10));
-      await errors.push(alertconfirm("Telefono"))
+      await errors.push(alertconfirm("Telefono", telefono, 'int', 9));
+      await errors.push(alertconfirm("Cedula", cedula, 'int', 7));
+      await errors.push(alertconfirm("Especialidad", especialidad, 'array', 0));
+      await errors.push(alertconfirm("Estado", estado, 'array', 0));
+      const allcheck = array => array.every(value => value === [0]);
+      const check = allcheck(errors);
 
-    })
+      if (check) {
+        $.confirm({
+            title:"Success",
+            content:"Empleado modificado con exito",
+            icon: 'fa fa-check',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'green',
+        })     
+      }else{
+          $.confirm({
+          title:"Error",
+          content:errors,
+          icon: 'fa fa-xmark',
+          theme: 'modern',
+          closeIcon: true,
+          animation: 'news',
+          closeAnimation: 'news',
+          type: 'red',
+        })
+      }
+
+    });
   </script>
   </body>
 </html>
