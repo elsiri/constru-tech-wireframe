@@ -220,42 +220,51 @@
     $("#form").submit(function(e){
       e.preventDefault();
     });
-    $("#edit").on('click', function(){
+    $("#edit").on('click', async function(){
       //Variables del formulario
-      const nombre = $("#nombre").val();
-      const cantidad = $("#cantidad").val();
-      const proveedor = $("#proveedor").val();
-      const precio = $("#price").val();
-      const tipoMaterial = $("#tipoMaterial").val();
-      const estado = $("#estado").val();
+      let nombre = $("#nombre").val();
+      let cantidad = $("#cantidad").val();
+      let proveedor = $("#proveedor").val();
+      let precio = $("#price").val();
+      let tipoMaterial = $("#tipoMaterial").val();
+      let estado = $("#estado").val();
 
-      //Validaciones
-      const letras = /^[A-Za-z]+$/;
-      const numeros = /^[0-9]+$/;
+      let errors = [];
 
-      if (!letras.test(nombre) || cantidad <= 0 || !numeros.test(cantidad) || proveedor.length <=0 || !numeros.test(precio) || tipoMaterial.length <= 0 || estado.length <= 0){
-        $.confirm({
-            title:"Error",
-            content:"No deben haber campos vacios",
-            icon: 'fa fa-xmark',
-            theme: 'modern',
-            closeIcon: true,
-            animation: 'news',
-            closeAnimation: 'news',
-            type: 'red'
-        });
-      }else{
+      await errors.push(alertconfirm("Nombre", nombre, 'string', ''));
+      await errors.push(alertconfirm("Cantidad", cantidad, 'int', 1));
+      await errors.push(alertconfirm("Proveedor", proveedor, 'array', 0));
+      await errors.push(alertconfirm("Precio", precio, 'int', 1));
+      await errors.push(alertconfirm("Tipo de material", tipoMaterial, 'array', 0));
+      await errors.push(alertconfirm("Estado", estado, 'array', 0));
+
+      const allcheck = array => array.every(value => value === [0]);
+      const check = allcheck(errors);
+
+      if (check) {
         $.confirm({
             title:"Success",
-            content:"Material añadido con exito",
+            content:"Material modificado con exito",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,
             animation: 'news',
             closeAnimation: 'news',
-            type: 'green'
-        });
+            type: 'green',
+        })     
+      }else{
+          $.confirm({
+          title:"Error",
+          content:errors,
+          icon: 'fa fa-xmark',
+          theme: 'modern',
+          closeIcon: true,
+          animation: 'news',
+          closeAnimation: 'news',
+          type: 'red',
+        })
       }
+      
     });
   </script>
   </body>
