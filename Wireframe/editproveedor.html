@@ -7,13 +7,10 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
     <title>Constru-tech</title>
-
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/jquery-confirm.min.css">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-  
-
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
@@ -28,26 +25,35 @@
           font-size: 3.5rem;
         }
       }
+      li.badge>button{
+        line-height: 0.8em !important;
+      }
+      li.badge>span{
+        color: black !important;
+      }
+      .jconfirm .jconfirm-box.jconfirm-animation-news{
+          transform: rotate(400deg) scale(0);
+          animation-duration: 3s;
+      }      
     </style>
-
-    
+    <link rel="stylesheet" href="css/jquery-ui.css">
     <!-- Custom styles for this template -->
     <link href="css/dashboard.css" rel="stylesheet">
+    <!-- <link href="css/style.css" rel="stylesheet"> -->
   </head>
   <body>
     
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Constru-tech</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <!-- <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search"> -->
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="#">Perfil</a>
-    </div>
-  </div>
-</header>
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 bg-white" href="#"><img src="./login/My project-1.png" class="d-inline-block align-text-top w-50"></a>
+      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+          <a class="nav-link px-3" href="#">Perfil</a>
+        </div>
+      </div>
+    </header>
 
 <div class="container-fluid">
   <div class="row">
@@ -211,6 +217,7 @@
         </div>
       </div>
     </main>
+    
   </div>
 </div>
 
@@ -237,9 +244,9 @@
     let telefono = $('#telefono').val();
     let estado = $('#estado').val();
     let tipo= $('#tipo').val();
-    let contacto = $('#contacto').val();
-    let TelContacto = $('#TelContacto').val();
-    let EmailContacto = $('#EmailContacto').val();
+    // let contacto = $('#contacto').val();
+    // let TelContacto = $('#TelContacto').val();
+    // let EmailContacto = $('#EmailContacto').val();
       let errors = []
       await errors.push(alertconfirm("Nombre", nombre,'string',6));    
       await errors.push(alertconfirm("NIT", nit,'string',11));
