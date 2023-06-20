@@ -199,10 +199,7 @@
       const nombre = $("#nombre").val();
       const unidad = $("#unidadMedida").val();
       const estado = $("#estado").val();
-
-      //Validaciones
-      const letras = /^[A-Za-z]+$/;
-
+      
       if (!letras.test(nombre) || unidad.length <= 0 || estado.length <= 0){
         $.confirm({
             title:"Error",

@@ -238,15 +238,9 @@
 
       let errors = []
 
-      // Validaciones
-      // const letras = /^[A-Za-z]+$/;
-      // const numeros = /^[0-9]+$/;
-      // const email_valid = /^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/;
-      // const telefono_valid = /^([0-9]{5,10})+$/;
-
-      await errors.push(alertconfirm("Nombre", nombre, 'string', 1));
+      await errors.push(alertconfirm("Nombre", nombre, 'string', ''));
       await errors.push(alertconfirm("Email", email, 'email', 9));
-      await errors.push(alertconfirm("Dirección", direccion, 'string', 10));
+      await errors.push(alertconfirm("Dirección", direccion, 'string', 1));
       await errors.push(alertconfirm("Telefono", telefono, 'int', 9));
       await errors.push(alertconfirm("Cedula", cedula, 'int', 7));
       await errors.push(alertconfirm("Especialidad", especialidad, 'array', 0));
@@ -277,7 +271,6 @@
           type: 'red',
         })
       }
-
     });
   </script>
   </body>
