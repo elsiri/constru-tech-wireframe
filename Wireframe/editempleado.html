@@ -244,11 +244,11 @@
       let especialidad = $("#especialidad").val();
       let estado = $("#estado").val();
 
-      let errors = []
+      let errors = [];
 
       await errors.push(alertconfirm("Nombre", nombre, 'string', ''));
       await errors.push(alertconfirm("Email", email, 'email', 9));
-      await errors.push(alertconfirm("Dirección", direccion, 'string', 1));
+      await errors.push(alertconfirm("Dirección", direccion, 'string', 1299));
       await errors.push(alertconfirm("Telefono", telefono, 'int', 9));
       await errors.push(alertconfirm("Cedula", cedula, 'int', 7));
       await errors.push(alertconfirm("Especialidad", especialidad, 'array', 0));
