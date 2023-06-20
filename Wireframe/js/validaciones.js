@@ -51,6 +51,7 @@ function alertconfirm(input,value,type,length) {
     let msg = '';
     let checkFormat = moment(value, "YYYY/MM/DD", true).isValid()
     const onlyNumbers = /^\d+$/;
+    const validEmail = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
         if (value == '' || value == null) {
         check = check + 1
         msg = msg + `<span class="text-danger text-center">*${input} es requerido </span><br>`
@@ -80,6 +81,11 @@ function alertconfirm(input,value,type,length) {
             if (checkFormat ===false) {
                 check = check + 1
                 msg = msg + `<span class="text-danger text-center">-${input}, Formato de fecha no valido, debe ser AÑO/MES/DIA </span><br>`
+            }
+        }else if(type && type=='email'){
+            if (validEmail.test(value)===false) {
+                check = check + 1
+                msg = msg + `<span class="text-danger text-center">-${input}, Direccion de email invalida </span><br>`                
             }
         }
     
