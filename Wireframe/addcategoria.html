@@ -1,154 +1,150 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Constru-tech</title>
 
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Hugo 0.84.0">
-  <title>Constru-tech</title>
+    <link rel="stylesheet" href="css/all.min.css">
+    <link rel="stylesheet" href="css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/themes-jquery-ui.css">
+    <link href="css/dashboard.css" rel="stylesheet">
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="css/all.min.css">
-  <link rel="stylesheet" href="css/jquery-confirm.min.css">
-  <link rel="stylesheet" href="css/jquery-ui.css">
-  <link rel="stylesheet" href="css/themes-jquery-ui.css">
-  <link href="css/dashboard.css" rel="stylesheet">
-  <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-
-  <style>
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
       }
-    }
-  </style>
 
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
 
-  <!-- Custom styles for this template -->
+    <!-- Custom styles for this template -->
   <link href="css/dashboard.css" rel="stylesheet">
-</head>
-
-<body>
-
-  <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
-    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 bg-white" href="#"><img src="./login/My project-1.png" class="d-inline-block align-text-top w-50"></a>
-    <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-nav">
-      <div class="nav-item text-nowrap">
-        <a class="nav-link px-3" href="#">Perfil</a>
-      </div>
-    </div>
-  </header>
-
-
-  <div class="container-fluid">
-    <div class="row">
-      <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
-        <div class="position-sticky pt-3">
-          <ul class="nav flex-column">
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="index.html">
-                <i class="fa-solid fa-gauge-high"></i>
-                Inicio
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" aria-current="page" href="usuarios.html">
-                <i class="fa-solid fa-users"></i>
-                Usuarios
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="roles.html">
-                <i class="fa-solid fa-user-tie"></i>
-                Roles
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="permisos.html">
-                <i class="fa-solid fa-user-gear"></i>
-                Permisos
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="empleados.html">
-                <i class="fa-solid fa-user-group"></i>
-                Empleados
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="especialidad.html">
-                <i class="fa-solid fa-screwdriver-wrench"></i>
-                Especialidades
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="proveedores.html">
-                <i class="fa-solid fa-truck"></i>
-                Proveedores
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="materiales.html">
-                <i class="fa-solid fa-box-open"></i>
-                Materiales
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link active" href="categorias.html">
-                <i class="fa-solid fa-book"></i>
-                Categorias
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="compras.html">
-                <i class="fa-solid fa-cart-shopping"></i>
-                Compras
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="obras.html">
-                <i class="fa-solid fa-map-location-dot"></i>
-                Obras y tiempos
-              </a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="clientes.html">
-                <i class="fa-solid fa-id-card"></i>
-                Clientes
-              </a>
-            </li>
-          </ul>
+  </head>
+  <body>
+    
+    <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0 shadow">
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 bg-white" href="#"><img src="./login/My project-1.png" class="d-inline-block align-text-top w-50"></a>
+      <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+          <a class="nav-link px-3" href="#">Perfil</a>
         </div>
-      </nav>
+      </div>
+    </header>
 
-      <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-        <div class="container">
-          <div class="row">
-            <div class="col-md-12 ">
-              <form id="form">
-                <div class="card text-center w-100">
-                  <div class="card-header bg-primary text-white">
-                    <h2>Agregar categoria</h2>
-                  </div>
-                  <div class="card-body">
-                    <div class="row">
-                      <div class="col-6 mt-3">
+
+<div class="container-fluid">
+  <div class="row">
+    <nav id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block bg-light sidebar collapse">
+      <div class="position-sticky pt-3">
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="index.html">
+              <i class="fa-solid fa-gauge-high"></i>
+              Inicio
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" aria-current="page" href="usuarios.html">
+              <i class="fa-solid fa-users"></i>
+              Usuarios
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="roles.html">
+              <i class="fa-solid fa-user-tie"></i>
+              Roles
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="permisos.html">
+              <i class="fa-solid fa-user-gear"></i>
+              Permisos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="empleados.html">
+              <i class="fa-solid fa-user-group"></i>
+              Empleados
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="especialidad.html">
+              <i class="fa-solid fa-screwdriver-wrench"></i>
+              Especialidades
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="proveedores.html">
+              <i class="fa-solid fa-truck"></i>
+              Proveedores
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="materiales.html">
+              <i class="fa-solid fa-box-open"></i>
+              Materiales
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link active" href="categorias.html">
+              <i class="fa-solid fa-book"></i>
+              Categorias
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="compras.html">
+              <i class="fa-solid fa-cart-shopping"></i>
+              Compras
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="obras.html">
+              <i class="fa-solid fa-map-location-dot"></i>
+              Obras y tiempos
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="clientes.html">
+              <i class="fa-solid fa-id-card"></i>
+              Clientes
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12 ">
+            <form id="form">
+              <div class="card text-center w-100">
+                <div class="card-header bg-primary text-white">
+                  <h2>Agregar categoria</h2>
+                </div>
+                <div class="card-body">
+                  <div class="row">
+                    <div class="col-6 mt-3">
                         <label for="correo" class="form-label">Nombre <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" id="nombre" placeholder="Nombre categoria"
-                          aria-label="Correo electrónico">
+                        <input type="text" class="form-control" id="nombre" placeholder="Nombre categoria" aria-label="Correo electrónico">
                       </div>
                       <div class="col-6 mt-3">
                         <label for="direccion" class="form-label">Unidad de medida <span class="text-danger">*</span></label>
@@ -159,85 +155,86 @@
                           <option value="3">L (Litro)</option>
                         </select>
                       </div>
-                      <div class="col-6 mt-3 offset-3">
-                        <label for="direccion" class="form-label">Estado <span class="text-danger">*</span></label>
-                        <select class="form-select form-select-sm" id="estado" aria-label=".form-select-sm example">
-                          <option value="" selected>Seleccione estado</option>
-                          <option value="1">Activo</option>
-                          <option value="2">Inactivo</option>
-                        </select>
-                      </div>
+                    <div class="col-6 mt-3 offset-3">
+                      <label for="direccion" class="form-label">Estado <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-sm" id="estado" aria-label=".form-select-sm example">
+                        <option value="" selected>Seleccione estado</option>
+                        <option value="1">Activo</option>
+                        <option value="2">Inactivo</option>
+                      </select>
                     </div>
-                  </div>
-                  <div class="card-footer text-center">
-                    <div class="row">
-                      <div class="col-md-6">
-                        <button id="add" class="btn btn-primary w-50" href="categorias.html">
-                          <h4>Agregar</h4>
-                        </button>
-                      </div>
-                      <div class="col-md-6">
-                        <a type="button" href="categorias.html" class="btn btn-danger w-50">
-                          <h4>Cancelar</h4>
-                        </a>
-                      </div>
+                  </div>  
+                </div>
+                <div class="card-footer text-center">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <button id="edit" class="btn btn-primary w-50" href="categorias.html"><h4>Editar</h4></button>
+                    </div>
+                    <div class="col-md-6">
+                      <a type="button" href="categorias.html" class="btn btn-danger w-50"><h4>Cancelar</h4></a>
                     </div>
                   </div>
                 </div>
-              </form>
-            </div>
+              </div>
+            </form>
           </div>
         </div>
-      </main>
-      <div class="mt-5 p-4 bg-dark text-white text-center " style="z-index: 9999;bottom: 0px;position: absolute;">
-        <div class="container">
-          <div class="row">
-            <div class="col-4 fs-6"><p>Copyright &copy; Constru-tech 2023</p></div>
-            <div class="col-4 fs-5">Soporte: <i class="fa-brands fa-whatsapp"></i></div>
-          </div>
+      </div>
+    </main>
+    <div class="mt-5 p-4 bg-dark text-white text-center " style="z-index: 9999;bottom: 0px;position: absolute;">
+      <div class="container">
+        <div class="row">
+          <div class="col-4 fs-6"><p>Copyright &copy; Constru-tech 2023</p></div>
+          <div class="col-4 fs-5">Soporte: <i class="fa-brands fa-whatsapp"></i></div>
         </div>
       </div>
     </div>
   </div>
-
-
-  <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
-  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-  <script src="js/38595e06c7.js"></script>
-  <script src="js/jquery-confirm.min.js"></script>
-  <script src="js/validaciones.js"></script>
+</div>
+<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
+<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
+<script src="js/38595e06c7.js"></script>
+<script src="js/jquery-confirm.min.js"></script>
+<script src="js/validaciones.js"></script>
+<script src="js/moment.js"></script>
   <script>
     $("#form").submit(function(e){
       e.preventDefault();
-    });
-    $("#add").on('click', async function(){
-      //Variables del formulario
-      let nombre = $("#nombre").val();
-      let unidad = $("#unidadMedida").val();
-      let estado = $("#estado").val();
+  });
+  $('#edit').on('click', async function(){
+    let nombre = $("#nombre").val();
+    let unidadMedida = $("#unidadMedida").val();
+    let estado = $('#estado').val();
+    let direccion = $('#direccion').val();
 
-      let errors = [];
+      let errors = []
+      await errors.push(alertconfirm("Nombre", nombre,'string',6));    
+      await errors.push(alertconfirm("Unidad de medida", unidadMedida,'array',0));
+      await errors.push(alertconfirm("Estado",estado,'array',0));
 
-      await errors.push(alertconfirm("Nombre", nombre, 'string', 50));
-      await errors.push(alertconfirm("Unidad de medida", unidad, 'Array', 0));
-      await errors.push(alertconfirm("Estado", estado, 'array', 0));
-      const allcheck = array => array.every(value => value === [0]);
-      const check = allcheck(errors);
-
+      const allcheck =  array => array.every(value => value === array[0])
+      const check = allcheck(errors)
       if (check) {
         $.confirm({
-            title:"Success",
-            content:"Categoria registrada con exito",
+            title:"Categoria ingresada con exito!",
+            content:"Redirecionando a listado de categorias...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,
             animation: 'news',
             closeAnimation: 'news',
             type: 'green',
+            columnClass:'col-md-6 col-md-offset-3',
+            autoClose: 'okay|4000',
+            buttons: {
+                okay: function () {
+                  window.location.href = "categorias.html";
+                },
+            }            
         })     
       }else{
           $.confirm({
@@ -250,9 +247,8 @@
           closeAnimation: 'news',
           type: 'red',
         })
-      }   
+      }      
     });
-  </script>
-</body>
-
+</script>
+  </body>
 </html>

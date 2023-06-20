@@ -135,7 +135,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 ">
-            <form method="post">
+            <form method="post" id="form">
               <div class="card text-center w-100">
                 <div class="card-header bg-primary text-white">
                   <h2>Agregar permiso</h2>
@@ -145,7 +145,7 @@
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Modulo <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="modulo">
-                        <option selected>Seleccione modulo</option>
+                        <option selected value="">Seleccione modulo</option>
                         <option value="1">Compras</option>
                         <option value="2">Empleados</option>
                         <option value="3">Obras</option>
@@ -154,7 +154,7 @@
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Estado <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="estado">
-                        <option selected>Seleccione estado</option>
+                        <option selected value="">Seleccione estado</option>
                         <option value="1">Activo</option>
                         <option value="2">Inactivo</option>
                       </select>
@@ -198,7 +198,8 @@
   <script src="js/jquery-confirm.min.js"></script>
   <script src="js/validaciones.js"></script>
   <script src="js/moment.js"></script>
-  <script>
+  <script>   
+
     $("#form").submit(function(e){
         e.preventDefault();
     });
@@ -206,23 +207,29 @@
       let modulo = $("#modulo").val();
       let estado = $("#estado").val();
 
-      let errors = [];
-
-      await errors.push(alertconfirm("Modulo", modulo, 'array', 0));
-      await errors.push(alertconfirm("Estado", estado, 'array', 0));
-      const allcheck = array => array.every(value => value === [0]);
-      const check = allcheck(errors);
-      
-      if (check) {
+      let errors = []
+      await errors.push(alertconfirm("Modulo", Modulo,'array',0))
+      await errors.push(alertconfirm("Estado", estado,'array',0))
+           
+      const allcheck =  array => array.every(value => value === array[0])
+      const check = allcheck(errors)
+       if (check) {
         $.confirm({
-            title:"Success",
-            content:"Rol modificado con exito",
+            title:"Obra ingresada con exito!",
+            content:"Redirecionando a listado de obras...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,
             animation: 'news',
             closeAnimation: 'news',
             type: 'green',
+            columnClass:'col-md-6 col-md-offset-3',
+            autoClose: 'okay|4000',
+            buttons: {
+                okay: function () {
+                  window.location.href = "obras.html";
+                },
+            }            
         })     
       }else{
           $.confirm({
@@ -235,7 +242,7 @@
           closeAnimation: 'news',
           type: 'red',
         })
-      }
+      }      
     });
   </script>
   </body>

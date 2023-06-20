@@ -224,14 +224,15 @@
   </div>
 </div>
 <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
-  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-  <script src="js/38595e06c7.js"></script>
-  <script src="js/jquery-confirm.min.js"></script>
-  <script src="js/validaciones.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
+<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
+<script src="js/38595e06c7.js"></script>
+<script src="js/jquery-confirm.min.js"></script>
+<script src="js/validaciones.js"></script>
+<script src="js/moment.js"></script>
   <script>
     $(function(){
       $("#fecha").datepicker({
@@ -267,16 +268,23 @@
       await errors.push(alertconfirm("Cantidad",cantidad,'int',0))
       const allcheck =  array => array.every(value => value === array[0])
       const check = allcheck(errors)
-       if (check) {
+      if (check) {
         $.confirm({
-            title:"Success",
-            content:"Compra ingresada con exito",
+            title:"Compra ingresada con exito!",
+            content:"Redirecionando a listado de compras...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,
             animation: 'news',
             closeAnimation: 'news',
             type: 'green',
+            columnClass:'col-md-6 col-md-offset-3',
+            autoClose: 'okay|4000',
+            buttons: {
+                okay: function () {
+                  window.location.href = "compras.html";
+                },
+            }            
         })     
       }else{
           $.confirm({

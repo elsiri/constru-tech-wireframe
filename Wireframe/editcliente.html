@@ -205,6 +205,7 @@
 <script src="js/38595e06c7.js"></script>
 <script src="js/jquery-confirm.min.js"></script>
 <script src="js/validaciones.js"></script>
+<script src="js/moment.js"></script>
 <script>
   
   $("#form").submit(function(e){
@@ -220,37 +221,44 @@
 
     let errors = []
     await errors.push(alertconfirm("Nombre", cliente,'string',8))
-    await errors.push(alertconfirm("Email", email,'string',10))
-    await errors.push(alertconfirm("Dirección", direccion,'string',10))
+    await errors.push(alertconfirm("Email", email,'string',50))
+    await errors.push(alertconfirm("Dirección", direccion,'string',30))
     await errors.push(alertconfirm("Telefono", telefono,'int',10))
     await errors.push(alertconfirm("Cedula", cedula,'int',10))
     await errors.push(alertconfirm("Estado",estado,'array',0))            
     const allcheck =  array => array.every(value => value === array[0])
     const check = allcheck(errors)
-     if (check) {
-      $.confirm({
-          title:"Success",
-          content:"Cliente editado con exito",
-          icon: 'fa fa-check',
+    if (check) {
+        $.confirm({
+            title:"Cliente actualizado con exito!",
+            content:"Redirecionando a listado de clientes...",
+            icon: 'fa fa-check',
+            theme: 'modern',
+            closeIcon: true,
+            animation: 'news',
+            closeAnimation: 'news',
+            type: 'green',
+            columnClass:'col-md-6 col-md-offset-3',
+            autoClose: 'okay|4000',
+            buttons: {
+                okay: function () {
+                  window.location.href = "clientes.html";
+                },
+            }            
+        })     
+      }else{
+          $.confirm({
+          title:"Error",
+          content:errors,
+          icon: 'fa fa-xmark',
           theme: 'modern',
           closeIcon: true,
           animation: 'news',
           closeAnimation: 'news',
-          type: 'green',
-      })     
-    }else{
-        $.confirm({
-        title:"Error",
-        content:errors,
-        icon: 'fa fa-xmark',
-        theme: 'modern',
-        closeIcon: true,
-        animation: 'news',
-        closeAnimation: 'news',
-        type: 'red',
-      })
-    }      
-  });
+          type: 'red',
+        })
+      }      
+    });
 </script>
   </body>
 </html>

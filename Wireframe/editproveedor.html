@@ -140,7 +140,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 ">
-            <form method="post" id="form">
+            <form id="form">
               <div class="card text-center w-100">
                 <div class="card-header bg-primary text-white">
                   <h2>Editar proveedor</h2>
@@ -230,14 +230,15 @@
 
 
 <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
-  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-  <script src="js/38595e06c7.js"></script>
-  <script src="js/jquery-confirm.min.js"></script>
-  <script src="js/validaciones.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
+<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
+<script src="js/38595e06c7.js"></script>
+<script src="js/jquery-confirm.min.js"></script>
+<script src="js/validaciones.js"></script>
+<script src="js/moment.js"></script>
   <script>
 
     $("#form").submit(function(e){
@@ -257,8 +258,8 @@
       let errors = []
       await errors.push(alertconfirm("Nombre", nombre,'string',6));    
       await errors.push(alertconfirm("NIT", nit,'string',11));
-      await errors.push(alertconfirm("Email",email,'string',10));
-      await errors.push(alertconfirm("Dirección",direccion,'string',16));
+      await errors.push(alertconfirm("Email",email,'string',50));
+      await errors.push(alertconfirm("Dirección",direccion,'string',30));
       await errors.push(alertconfirm("Telefono",telefono,'string',10));
       await errors.push(alertconfirm("Estado",estado,'array',''));
       await errors.push(alertconfirm("Tipo de proveedor",tipo,'array',''));
@@ -267,16 +268,23 @@
       // await errors.push(alertconfirm("Email del contacto",EmailContacto,"string",10))
       const allcheck =  array => array.every(value => value === array[0])
       const check = allcheck(errors)
-       if (check) {
+      if (check) {
         $.confirm({
-            title:"Success",
-            content:"Proveedor editado con exito",
+            title:"Proveedor actualizado con exito!",
+            content:"Redirecionando a listado de proveedores...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,
             animation: 'news',
             closeAnimation: 'news',
             type: 'green',
+            columnClass:'col-md-6 col-md-offset-3',
+            autoClose: 'okay|4000',
+            buttons: {
+                okay: function () {
+                  window.location.href = "proveedores.html";
+                },
+            }            
         })     
       }else{
           $.confirm({

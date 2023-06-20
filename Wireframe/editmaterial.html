@@ -208,14 +208,16 @@
 </div>
 
 
-  <script type="text/javascript" src="js/jquery-3.7.0.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
-  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-  <script src="js/38595e06c7.js" crossorigin="anonymous"></script>
-  <script src="js/jquery-confirm.min.js"></script>
-
+<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
+<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
+<script src="js/38595e06c7.js"></script>
+<script src="js/jquery-confirm.min.js"></script>
+<script src="js/validaciones.js"></script>
+<script src="js/moment.js"></script>
   <script>
     $("#form").submit(function(e){
       e.preventDefault();
@@ -243,14 +245,21 @@
 
       if (check) {
         $.confirm({
-            title:"Success",
-            content:"Material modificado con exito",
+            title:"Compra ingresada con exito!",
+            content:"Redirecionando a listado de compras...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,
             animation: 'news',
             closeAnimation: 'news',
             type: 'green',
+            columnClass:'col-md-6 col-md-offset-3',
+            autoClose: 'okay|4000',
+            buttons: {
+                okay: function () {
+                  window.location.href = "compras.html";
+                },
+            }            
         })     
       }else{
           $.confirm({
@@ -263,8 +272,7 @@
           closeAnimation: 'news',
           type: 'red',
         })
-      }
-      
+      }      
     });
   </script>
   </body>

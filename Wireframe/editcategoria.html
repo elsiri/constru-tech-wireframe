@@ -191,45 +191,50 @@
     </div>
   </div>
 </div>
-
-
-  <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
-  <script src="js/jquery-ui.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
-  <script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
-  <script src="js/38595e06c7.js"></script>
-  <script src="js/jquery-confirm.min.js"></script>
-  <script src="js/validaciones.js"></script>
+<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+<script src="js/jquery-ui.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.min.js"></script>
+<script src="../Bootstrap-4-Multi-Select-BsMultiSelect/dist/js/BsMultiSelect.bs4.min.js"></script>
+<script src="js/38595e06c7.js"></script>
+<script src="js/jquery-confirm.min.js"></script>
+<script src="js/validaciones.js"></script>
+<script src="js/moment.js"></script>
   <script>
     $("#form").submit(function(e){
       e.preventDefault();
-    });
-    $("#add").on('click', async function(){
-      //Variables del formulario
-      let nombre = $("#nombre").val();
-      let unidad = $("#unidadMedida").val();
-      let estado = $("#estado").val();
+  });
+  $('#edit').on('click', async function(){
+    let nombre = $("#nombre").val();
+    let unidadMedida = $("#unidadMedida").val();
+    let estado = $('#estado').val();
+    let direccion = $('#direccion').val();
 
-      let errors = [];
+      let errors = []
+      await errors.push(alertconfirm("Nombre", nombre,'string',6));    
+      await errors.push(alertconfirm("Unidad de medida", unidadMedida,'array',0));
+      await errors.push(alertconfirm("Estado",estado,'array',0));
 
-      await errors.push(alertconfirm("Nombre", nombre, 'string', 50));
-      await errors.push(alertconfirm("Unidad de medida", unidad, 'Array', 0));
-      await errors.push(alertconfirm("Estado", estado, 'array', 0));
-      const allcheck = array => array.every(value => value === [0]);
-      const check = allcheck(errors);
-
+      const allcheck =  array => array.every(value => value === array[0])
+      const check = allcheck(errors)
       if (check) {
         $.confirm({
-            title:"Success",
-            content:"Categoria modificada con exito",
+            title:"Categoria editada con exito!",
+            content:"Redirecionando a listado de categorias...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,
             animation: 'news',
             closeAnimation: 'news',
             type: 'green',
+            columnClass:'col-md-6 col-md-offset-3',
+            autoClose: 'okay|4000',
+            buttons: {
+                okay: function () {
+                  window.location.href = "categorias.html";
+                },
+            }            
         })     
       }else{
           $.confirm({
@@ -242,8 +247,8 @@
           closeAnimation: 'news',
           type: 'red',
         })
-      }   
-    })
-  </script>
+      }      
+    });
+</script>
   </body>
 </html>
