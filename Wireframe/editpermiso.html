@@ -138,7 +138,7 @@
             <form method="post" id="form">
               <div class="card text-center w-100">
                 <div class="card-header bg-primary text-white">
-                  <h2>Agregar permiso</h2>
+                  <h2>Editar permiso</h2>
                 </div>
                 <div class="card-body">
                   <div class="row">
@@ -156,7 +156,7 @@
                       <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="estado">
                         <option selected value="">Seleccione estado</option>
                         <option value="1">Activo</option>
-                        <option value="2">Inactivo</option>
+                        <option value="0">Inactivo</option>
                       </select>
                     </div>
                   </div>  
@@ -215,7 +215,7 @@
        if (check) {
         $.confirm({
             title:"Permiso modificado con exito!",
-            content:"Redirecionando a listado de obras...",
+            content:"Redirecionando a listado de permisos...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,

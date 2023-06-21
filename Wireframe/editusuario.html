@@ -165,7 +165,7 @@
                       <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="estado">
                         <option selected value="">Seleccione estado</option>
                         <option value="1">Activo</option>
-                        <option value="2">Inactivo</option>
+                        <option value="0">Inactivo</option>
                       </select>
                     </div>
                     <div class="col-6 mt-3">
@@ -182,7 +182,7 @@
                 <div class="card-footer text-center">
                   <div class="row">
                     <div class="col-md-6">
-                      <button class="btn btn-primary w-50" id="add" href="usuarios.html"><h4>Editar</h4></button>
+                      <button class="btn btn-primary w-50" id="edit" href="usuarios.html"><h4>Editar</h4></button>
                     </div>
                     <div class="col-md-6">
                       <a type="button" href="usuarios.html" class="btn btn-danger w-50"><h4>Cancelar</h4></a>
@@ -206,8 +206,7 @@
   </div>
 </div>
 
-
-<script type="text/javascript" src="js/jquery-3.6.0.js"></script>
+  <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/bootstrap.min.js"></script>
   <script src="js/popper.min.js"></script>
@@ -216,38 +215,44 @@
   <script src="js/38595e06c7.js"></script>
   <script src="js/jquery-confirm.min.js"></script>
   <script src="js/validaciones.js"></script>
+  <script src="js/moment.js"></script>
   <script>
     $("#form").submit(function(e){
         e.preventDefault();
     });
-    $('#add').on('click', async function(){
+    $('#edit').on('click', async function(){
+      let pw = $("#pw").val();
+      let cpw = $("#cpw").val();
       let empleado = $("#empleado").val();
       let estado = $("#estado").val();
       let rol = $("#rol").val();
-      let pw = $("#pw").val();
-      let cpw=$("#cpw").val();
 
-      let errors = [];
-
-      await errors.push(alertconfirm("Contraseña", pw, 'string', 10));
-      await errors.push(alertconfirm("Confirmar contraseña", pw, 'string', 10));
-      await errors.push(alertconfirm("Empleado", empleado, 'array', 0));
-      await errors.push(alertconfirm("Rol", rol, 'array', 0));
-      await errors.push(alertconfirm("Estado", estado, 'array', 0));
-
-      const allcheck = array => array.every(value => value === [0]);
-      const check = allcheck(errors);
-
+      let errors = []
+      await errors.push(alertconfirm("Contraseña", pw, 'string', 15))
+      await errors.push(alertconfirm("Confirmar contraseña", cpw, 'string', 15))
+      await errors.push(alertconfirm("Empleado", empleado, '', ''))
+      await errors.push(alertconfirm("Modulo", rol,'', ''));
+      await errors.push(alertconfirm("Estado", estado,'', ''));
+           
+      const allcheck =  array => array.every(value => value === array[0])
+      const check = allcheck(errors)
       if (check) {
         $.confirm({
-            title:"Success",
-            content:"Usuario registrado con exito",
+            title:"Usuario registrado con exito!",
+            content:"Redirecionando a listado de usuarios...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,
             animation: 'news',
             closeAnimation: 'news',
             type: 'green',
+            columnClass:'col-md-6 col-md-offset-3',
+            autoClose: 'okay|4000',
+            buttons: {
+                okay: function () {
+                  window.location.href = "usuarios.html";
+                },
+            }            
         })     
       }else{
           $.confirm({
@@ -260,8 +265,9 @@
           closeAnimation: 'news',
           type: 'red',
         })
-      }
+      }      
     });
+
 </script>
   </body>
 </html>

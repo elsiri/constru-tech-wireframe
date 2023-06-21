@@ -158,7 +158,7 @@
                       <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="estado">
                         <option selected value="">Seleccione estado</option>
                         <option value="1">Activo</option>
-                        <option value="2">Inactivo</option>
+                        <option value="0">Inactivo</option>
                       </select>
                     </div>
                     <div class="col-12 mt-3">
@@ -307,7 +307,6 @@
   </div>
 </div>
 
-  
   <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
   <script src="js/jquery-ui.js"></script>
   <script src="js/bootstrap.min.js"></script>
@@ -317,34 +316,38 @@
   <script src="js/38595e06c7.js"></script>
   <script src="js/jquery-confirm.min.js"></script>
   <script src="js/validaciones.js"></script>
+  <script src="js/moment.js"></script>
   <script>
     $("#form").submit(function(e){
         e.preventDefault();
     });
     $('#add').on('click', async function(){
-      let estado = $("#estado").val();
       let nombre = $("#name").val();
-      // let permisosRol = $('input[name="permiso"]:checked').val();
+      let estado = $("#estado").val();
 
-      let errors = [];
-
-      await errors.push(alertconfirm("Nombre", nombre, 'string', ''));
-      await errors.push(alertconfirm("Estado", estado, 'array', 0));
-      // await errors.push(alertconfirm("Permisos del rol", permisosRol, 'array', 0));
-
-      const allcheck = array => array.every(value => value === [0]);
-      const check = allcheck(errors);
-      
-      if (check) {
+      let errors = []
+      await errors.push(alertconfirm("Nombre", nombre, 'string', 15));
+      await errors.push(alertconfirm("Estado", estado, '', ''));
+           
+      const allcheck =  array => array.every(value => value === array[0])
+      const check = allcheck(errors)
+       if (check) {
         $.confirm({
-            title:"Success",
-            content:"Rol registrado con exito",
+            title:"Rol ingresado con exito!",
+            content:"Redirecionando a listado de roles...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,
             animation: 'news',
             closeAnimation: 'news',
             type: 'green',
+            columnClass:'col-md-6 col-md-offset-3',
+            autoClose: 'okay|4000',
+            buttons: {
+                okay: function () {
+                  window.location.href = "roles.html";
+                },
+            }            
         })     
       }else{
           $.confirm({
@@ -357,7 +360,7 @@
           closeAnimation: 'news',
           type: 'red',
         })
-      }
+      }      
     });
   </script>
   </body>

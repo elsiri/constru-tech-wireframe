@@ -165,7 +165,7 @@
                       <select class="form-select form-select-sm" aria-label=".form-select-sm example" id="estado">
                         <option selected value="">Seleccione estado</option>
                         <option value="1">Activo</option>
-                        <option value="2">Inactivo</option>
+                        <option value="0">Inactivo</option>
                       </select>
                     </div>
                     <div class="col-6 mt-3">
@@ -216,32 +216,31 @@
   <script src="js/38595e06c7.js"></script>
   <script src="js/jquery-confirm.min.js"></script>
   <script src="js/validaciones.js"></script>
+  <script src="js/moment.js"></script>
   <script>
     $("#form").submit(function(e){
         e.preventDefault();
     });
     $('#add').on('click', async function(){
+      let pw = $("#pw").val();
+      let cpw = $("#cpw").val();
       let empleado = $("#empleado").val();
       let estado = $("#estado").val();
       let rol = $("#rol").val();
-      let pw = $("#pw").val();
-      let cpw=$("#cpw").val();
 
-      let errors = [];
-
-      await errors.push(alertconfirm("Contraseña", pw, 'string', 9));
-      await errors.push(alertconfirm("Confirmar contraseña", cpw, 'string', 9));
-      await errors.push(alertconfirm("Empleado", empleado, 'array', 0));
-      await errors.push(alertconfirm("Rol", rol, 'array', 0));
-      await errors.push(alertconfirm("Estado", estado, 'array', 0));
-
-      const allcheck = array => array.every(value => value === [0]);
-      const check = allcheck(errors);
-      console.log(errors);
-      if (check) {
+      let errors = []
+      await errors.push(alertconfirm("Contraseña", pw, 'string', 15))
+      await errors.push(alertconfirm("Confirmar contraseña", cpw, 'string', 15))
+      await errors.push(alertconfirm("Empleado", empleado, '', ''))
+      await errors.push(alertconfirm("Modulo", rol,'', ''));
+      await errors.push(alertconfirm("Estado", estado,'', ''));
+           
+      const allcheck =  array => array.every(value => value === array[0])
+      const check = allcheck(errors)
+       if (check) {
         $.confirm({
-            title:"Permiso registrado con exito!",
-            content:"Redirecionando a listado de obras...",
+            title:"Usuario registrado con exito!",
+            content:"Redirecionando a listado de usuarios...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,
@@ -252,7 +251,7 @@
             autoClose: 'okay|4000',
             buttons: {
                 okay: function () {
-                  window.location.href = "addusuario.html";
+                  window.location.href = "usuarios.html";
                 },
             }            
         })     
