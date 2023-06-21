@@ -7,12 +7,15 @@
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Hugo 0.84.0">
     <title>Constru-tech</title>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/themes-jquery-ui.css">
+    <link href="css/dashboard.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    
 
     <style>
       .bd-placeholder-img {
@@ -128,7 +131,7 @@
         </ul>
       </div>
     </nav>
-
+    
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
       <div class="container">
         <div class="row">
@@ -151,7 +154,9 @@
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Proveedor <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" id="proveedor" aria-label=".form-select-sm example">
-                        <option value="" selected>Seleccione el estado</option>
+                        <option value="" selected>Seleccione el proveedor
+
+                        </option>
                         <option value="1">Pintuco</option>
                         <option value="2">Homecenter</option>
                         <option value="3">Corona</option>
@@ -164,7 +169,7 @@
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Tipo material <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" id="tipoMaterial" aria-label=".form-select-sm example">
-                        <option value="" selected>Seleccione el tipo de material</option>
+                        <option selected value="" >Seleccione el tipo de material</option>
                         <option value="1">Madera</option>
                         <option value="2">Acero</option>
                         <option value="3">Metal</option>
@@ -173,7 +178,7 @@
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Estado <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" id="estado" aria-label=".form-select-sm example">
-                        <option value="" selected>Seleccione el estado</option>
+                        <option selected value="" >Seleccione el estado</option>
                         <option value="1">Activo</option>
                         <option value="2">Inactivo</option>
                       </select>
@@ -207,7 +212,6 @@
   </div>
 </div>
 
-
 <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
 <script src="js/jquery-ui.js"></script>
 <script src="js/bootstrap.min.js"></script>
@@ -222,31 +226,27 @@
     $("#form").submit(function(e){
       e.preventDefault();
     });
-    $("#edit").on('click', async function(){
-      //Variables del formulario
+    $('#edit').on('click', async function(){
       let nombre = $("#nombre").val();
       let cantidad = $("#cantidad").val();
-      let proveedor = $("#proveedor").val();
       let precio = $("#price").val();
+      let proveedor = $("#proveedor").val();
       let tipoMaterial = $("#tipoMaterial").val();
       let estado = $("#estado").val();
-
-      let errors = [];
-
-      await errors.push(alertconfirm("Nombre", nombre, 'string', ''));
-      await errors.push(alertconfirm("Cantidad", cantidad, 'int', 1));
-      await errors.push(alertconfirm("Proveedor", proveedor, 'array', 0));
-      await errors.push(alertconfirm("Precio", precio, 'int', 1));
-      await errors.push(alertconfirm("Tipo de material", tipoMaterial, 'array', 0));
-      await errors.push(alertconfirm("Estado", estado, 'array', 0));
-
-      const allcheck = array => array.every(value => value === [0]);
-      const check = allcheck(errors);
-
-      if (check) {
+      let errors = []
+      await errors.push(alertconfirm("Nombre", nombre,'string',10))
+      await errors.push(alertconfirm("Cantidad", cantidad,'int',0))
+      await errors.push(alertconfirm("Precio", precio, 'int', 1000))
+      await errors.push(alertconfirm("Proveedor", proveedor, '', ''))
+      await errors.push(alertconfirm("Tipo material", tipoMaterial, '', ''))
+      await errors.push(alertconfirm("Estado", estado,'', ''))            
+      const allcheck =  array => array.every(value => value === array[0])
+      const check = allcheck(errors)
+      console.log(check,errors)
+       if (check) {
         $.confirm({
-            title:"Compra ingresada con exito!",
-            content:"Redirecionando a listado de compras...",
+            title:"Material modificado con exito!",
+            content:"Redirecionando a listado de materiales...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,

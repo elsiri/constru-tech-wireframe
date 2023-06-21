@@ -168,7 +168,7 @@
                 <div class="card-footer text-center">
                   <div class="row">
                     <div class="col-md-6">
-                      <button id="edit" class="btn btn-primary w-50" href="categorias.html"><h4>Editar</h4></button>
+                      <button id="add" class="btn btn-primary w-50" href="categorias.html"><h4>Agregar</h4></button>
                     </div>
                     <div class="col-md-6">
                       <a type="button" href="categorias.html" class="btn btn-danger w-50"><h4>Cancelar</h4></a>
@@ -203,24 +203,22 @@
 <script src="js/moment.js"></script>
   <script>
     $("#form").submit(function(e){
-      e.preventDefault();
-  });
-  $('#edit').on('click', async function(){
-    let nombre = $("#nombre").val();
-    let unidadMedida = $("#unidadMedida").val();
-    let estado = $('#estado').val();
-    let direccion = $('#direccion').val();
-
+        e.preventDefault();
+      });
+    $('#add').on('click', async function(){
+      let nombre = $("#nombre").val();
+      let unidadMedida = $("#unidadMedida").val();
+      let estado = $("#estado").val();
       let errors = []
-      await errors.push(alertconfirm("Nombre", nombre,'string',6));    
-      await errors.push(alertconfirm("Unidad de medida", unidadMedida,'array',0));
-      await errors.push(alertconfirm("Estado",estado,'array',0));
-
+      await errors.push(alertconfirm("Nombre", nombre,'string',10))
+      await errors.push(alertconfirm("Unidad de medida", unidadMedida, '', ''))
+      await errors.push(alertconfirm("Estado", estado, '', ''))
       const allcheck =  array => array.every(value => value === array[0])
       const check = allcheck(errors)
-      if (check) {
+      console.log(check,errors)
+       if (check) {
         $.confirm({
-            title:"Categoria ingresada con exito!",
+            title:"Categoria ingresado con exito!",
             content:"Redirecionando a listado de categorias...",
             icon: 'fa fa-check',
             theme: 'modern',

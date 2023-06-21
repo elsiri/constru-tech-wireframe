@@ -160,10 +160,12 @@
                       <label for="telefono" class="form-label">Teléfono <span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="telefono" placeholder="Teléfono" aria-label="Teléfono">
                     </div>
+                  
                     <div class="col-6 mt-3">
                       <label for="cedula" class="form-label">Cédula<span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="cc" placeholder="Cédula" aria-label="Teléfono">
                     </div>
+                    
                     <div class="col-6 mt-3">
                       <label  class="form-label">Especialidad <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" id="especialidad" aria-label=".form-select-sm example">
@@ -186,7 +188,7 @@
                 <div class="card-footer text-center">
                   <div class="row">
                     <div class="col-md-6">
-                      <button id="add" class="btn btn-primary w-50" href="empleados.html"><h4>Editar</h4></button>
+                      <button id="edit" class="btn btn-primary w-50" href="empleados.html"><h4>Editar</h4></button>
                     </div>
                     <div class="col-md-6">
                       <a type="button" href="empleados.html" class="btn btn-danger w-50"><h4>Cancelar</h4></a>
@@ -222,9 +224,9 @@
 <script src="js/moment.js"></script>
   <script>
     $("#form").submit(function(e){
-      e.preventDefault();
-    });
-    $("#add").on('click', async function(){
+        e.preventDefault();
+      });
+    $('#edit').on('click', async function(){
       let nombre = $("#nombre").val();
       let email = $("#email").val();
       let direccion = $("#direccion").val();
@@ -232,22 +234,21 @@
       let cedula = $("#cc").val();
       let especialidad = $("#especialidad").val();
       let estado = $("#estado").val();
-      let errors = [];
-
-      await errors.push(alertconfirm("Nombre", nombre, 'string', ''));
-      await errors.push(alertconfirm("Email", email, 'email', 9));
-      await errors.push(alertconfirm("Dirección", direccion, 'string', 30));
-      await errors.push(alertconfirm("Telefono", telefono, 'int', 9));
-      await errors.push(alertconfirm("Cedula", cedula, 'int', 7));
-      await errors.push(alertconfirm("Especialidad", especialidad, 'array', 0));
-      await errors.push(alertconfirm("Estado", estado, 'array', 0));
-      const allcheck = array => array.every(value => value === [0]);
+      let errors = []
+      await errors.push(alertconfirm("Nombre", nombre,'string',10));
+      await errors.push(alertconfirm("Email", email, 'email', 50));
+      await errors.push(alertconfirm("Direccion", direccion, 'string', 20));
+      await errors.push(alertconfirm("Teléfono", telefono, 'int', 10));
+      await errors.push(alertconfirm("Cedula", cedula, 'int', 15));
+      await errors.push(alertconfirm("Especialidad", especialidad, '', ''));
+      await errors.push(alertconfirm("Estado", estado, '', ''));
+      const allcheck =  array => array.every(value => value === array[0]);
       const check = allcheck(errors);
-
-      if (check) {
+      console.log(check,errors);
+       if (check) {
         $.confirm({
-            title:"Compra ingresada con exito!",
-            content:"Redirecionando a listado de compras...",
+            title:"Empleado modificado con exito!",
+            content:"Redirecionando a listado de empleados...",
             icon: 'fa fa-check',
             theme: 'modern',
             closeIcon: true,

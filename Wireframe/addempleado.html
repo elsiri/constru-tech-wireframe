@@ -224,9 +224,9 @@
 <script src="js/moment.js"></script>
   <script>
     $("#form").submit(function(e){
-      e.preventDefault();
-    });
-    $("#add").on('click', async function(){
+        e.preventDefault();
+      });
+    $('#add').on('click', async function(){
       let nombre = $("#nombre").val();
       let email = $("#email").val();
       let direccion = $("#direccion").val();
@@ -234,21 +234,20 @@
       let cedula = $("#cc").val();
       let especialidad = $("#especialidad").val();
       let estado = $("#estado").val();
-      let errors = [];
-
-      await errors.push(alertconfirm("Nombre", nombre, 'string', ''));
-      await errors.push(alertconfirm("Email", email, 'email', 9));
-      await errors.push(alertconfirm("Dirección", direccion, 'string', 30));
-      await errors.push(alertconfirm("Telefono", telefono, 'int', 9));
-      await errors.push(alertconfirm("Cedula", cedula, 'int', 7));
-      await errors.push(alertconfirm("Especialidad", especialidad, 'array', 0));
-      await errors.push(alertconfirm("Estado", estado, 'array', 0));
-      const allcheck = array => array.every(value => value === [0]);
+      let errors = []
+      await errors.push(alertconfirm("Nombre", nombre,'string',10));
+      await errors.push(alertconfirm("Email", email, 'email', 50));
+      await errors.push(alertconfirm("Direccion", direccion, 'string', 20));
+      await errors.push(alertconfirm("Teléfono", telefono, 'int', 10));
+      await errors.push(alertconfirm("Cedula", cedula, 'int', 15));
+      await errors.push(alertconfirm("Especialidad", especialidad, '', ''));
+      await errors.push(alertconfirm("Estado", estado, '', ''));
+      const allcheck =  array => array.every(value => value === array[0]);
       const check = allcheck(errors);
-
-      if (check) {
+      console.log(check,errors);
+       if (check) {
         $.confirm({
-            title:"Empleado registrado con exito!",
+            title:"Empleado ingresado con exito!",
             content:"Redirecionando a listado de empleados...",
             icon: 'fa fa-check',
             theme: 'modern',

@@ -208,8 +208,8 @@
       let estado = $("#estado").val();
 
       let errors = []
-      await errors.push(alertconfirm("Modulo", modulo,'array',0))
-      await errors.push(alertconfirm("Estado", estado,'array',0))
+      await errors.push(alertconfirm("Modulo", modulo,'', ''));
+      await errors.push(alertconfirm("Estado", estado,'', ''));
            
       const allcheck =  array => array.every(value => value === array[0])
       const check = allcheck(errors)
