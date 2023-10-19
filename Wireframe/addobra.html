@@ -174,19 +174,12 @@
                       <input id="fechaini" type="text" class="form-control" placeholder="" aria-label="Fecha">
                     </div>
                     <div class="col-6 mt-3">
-                      <label for="example2" class="form-label">Empleados encargados<span class="text-danger">*</span></label>
-                      <select name="example2" id="example2" class="form-control" multiple="multiple" style="display: none;">
+                      <label for="empl" class="form-label">Asignar asesor<span class="text-danger">*</span></label>
+                      <select name="empl" id="empl" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option value="">Seleccione asesor</option>
                         <option value="1">Empleado 1</option>
                         <option value="2">Empleado 2</option>
                         <option value="3">Empleado 3</option>
-                      </select>
-                    </div>
-                    <div class="col-6 mt-3">
-                      <label for="example" class="form-label">Materiales requeridos<span class="text-danger">*</span></label>
-                      <select name="example" id="example" class="form-control"  multiple="multiple" style="display: none;">
-                        <option value="1">Material 1</option>
-                        <option value="2">Material 2</option>
-                        <option value="3">Material 3</option>
                       </select>
                     </div>
                   </div>  
@@ -207,14 +200,6 @@
         </div>
       </div>
     </main>
-    <div class="mt-5 p-4 bg-dark text-white text-center " style="z-index: 9999;bottom: 0px;position: absolute;">
-      <div class="container">
-        <div class="row">
-          <div class="col-4 fs-6"><p>Copyright &copy; Constru-tech 2023</p></div>
-          <div class="col-4 fs-5">Soporte: <i class="fa-brands fa-whatsapp"></i></div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -255,7 +240,6 @@
       await errors.push(alertconfirm("Direccion", direccion,'string',20))
       await errors.push(alertconfirm("Descripcion", descripcion,'string',30))
       await errors.push(alertconfirm("Empleado", selectEmpl,'array',0))
-      await errors.push(alertconfirm("Material", selectMat,'array',0))            
       const allcheck =  array => array.every(value => value === array[0])
       const check = allcheck(errors)
        if (check) {

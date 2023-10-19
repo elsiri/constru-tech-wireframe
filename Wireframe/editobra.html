@@ -79,12 +79,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="permisos.html">
-              <i class="fa-solid fa-user-gear"></i>
-              Permisos
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link" href="empleados.html">
               <i class="fa-solid fa-user-group"></i>
               Empleados
@@ -193,8 +187,17 @@
                         <option value="2">Material 2</option>
                         <option value="3" selected>Material 3</option>
                       </select>
-                      
                     </div>
+                    <div class="col-6 mt-3">
+                      <label for="direccion" class="form-label">Estado de la obra <span class="text-danger">*</span></label>
+                      <select id="estado" class="form-select form-select-sm" aria-label=".form-select-sm example">
+                        <option selected value="">Seleccione estado</option>
+                        <option value="1">Pendiente</option>
+                        <option value="2">En asesoria</option>
+                        <option value="3">En construccion</option>
+                        <option value="4">Terminado</option>
+                      </select>
+                    </div>                    
                   </div>  
                 </div>
                 <div class="card-footer text-center">
@@ -213,14 +216,6 @@
         </div>
       </div>
     </main>
-    <div class="mt-5 p-4 bg-dark text-white text-center " style="z-index: 9999;bottom: 0px;position: absolute;">
-      <div class="container">
-        <div class="row">
-          <div class="col-4 fs-6"><p>Copyright &copy; Constru-tech 2023</p></div>
-          <div class="col-4 fs-5">Soporte: <i class="fa-brands fa-whatsapp"></i></div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 

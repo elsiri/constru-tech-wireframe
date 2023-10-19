@@ -75,12 +75,6 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="permisos.html">
-              <i class="fa-solid fa-user-gear"></i>
-              Permisos
-            </a>
-          </li>
-          <li class="nav-item">
             <a class="nav-link active" href="empleados.html">
               <i class="fa-solid fa-user-group"></i>
               Empleados
@@ -149,33 +143,39 @@
                       <input type="text" class="form-control" id="nombre" placeholder="Nombres y apellidos" aria-label="Nombre">
                     </div>
                     <div class="col-6 mt-3">
+                      <label  class="form-label">Tipo documento <span class="text-danger">*</span></label>
+                      <select class="form-select form-select-sm" id="tipodoc" aria-label=".form-select-sm example">
+                        <option selected value="" >Seleccione tipo documento</option>
+                        <option value="CC">Cedula de ciudadania</option>
+                        <option value="CE">Cedula de extranjeria</option>
+                        <option value="PS">Pasaporte</option>
+                      </select>
+                    </div>
+                    <div class="col-6 mt-3">
+                      <label for="cedula" class="form-label">Número documento<span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="cc" placeholder="Número documento" aria-label="Teléfono">
+                    </div>
+                    <div class="col-6 mt-3">
                       <label for="correo" class="form-label">Correo electrónico <span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="email" placeholder="Correo electrónico" aria-label="Correo electrónico">
+                    </div>
+                    <div class="col-6 mt-3">
+                      <label for="telefono" class="form-label">Teléfono <span class="text-danger">*</span></label>
+                      <input type="text" class="form-control" id="telefono" placeholder="Teléfono" aria-label="Teléfono">
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Dirección <span class="text-danger">*</span></label>
                       <input type="text" class="form-control" id="direccion" placeholder="Dirección" aria-label="Dirección">
                     </div>
                     <div class="col-6 mt-3">
-                      <label for="telefono" class="form-label">Teléfono <span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="telefono" placeholder="Teléfono" aria-label="Teléfono">
-                    </div>
-                  
-                    <div class="col-6 mt-3">
-                      <label for="cedula" class="form-label">Cédula<span class="text-danger">*</span></label>
-                      <input type="text" class="form-control" id="cc" placeholder="Cédula" aria-label="Teléfono">
-                    </div>
-                    
-                    <div class="col-6 mt-3">
                       <label  class="form-label">Especialidad <span class="text-danger">*</span></label>
-                      <select class="form-select form-select-sm" id="especialidad" aria-label=".form-select-sm example">
-                        <option selected value="" >Seleccione la especialidad</option>
-                        <option value="1">Plomero</option>
-                        <option value="2">Acabados</option>
+                      <select name="example" id="example" class="form-control" multiple="multiple" style="display: none;">
+                        <option value="1">Plomeria</option>
+                        <option value="2">Drywall</option>
                         <option value="3">Pintura</option>
                       </select>
                     </div>
-                    <div class="col-6 mt-3 offset-3">
+                    <div class="col-6 mt-3">
                       <label  class="form-label">Estado <span class="text-danger">*</span></label>
                       <select class="form-select form-select-sm" id="estado" aria-label=".form-select-sm example">
                         <option selected value="" >Seleccione estado</option>
@@ -201,14 +201,6 @@
         </div>
       </div>
     </main>
-    <div class="mt-5 p-4 bg-dark text-white text-center " style="z-index: 9999;bottom: 0px;position: absolute;">
-      <div class="container">
-        <div class="row">
-          <div class="col-4 fs-6"><p>Copyright &copy; Constru-tech 2023</p></div>
-          <div class="col-4 fs-5">Soporte: <i class="fa-brands fa-whatsapp"></i></div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 
@@ -223,6 +215,7 @@
 <script src="js/validaciones.js"></script>
 <script src="js/moment.js"></script>
   <script>
+    $("#example").bsMultiSelect();    
     $("#form").submit(function(e){
         e.preventDefault();
       });

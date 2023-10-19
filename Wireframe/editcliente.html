@@ -10,9 +10,11 @@
 
     <link rel="stylesheet" href="css/all.min.css">
     <link rel="stylesheet" href="css/jquery-confirm.min.css">
+    <link rel="stylesheet" href="css/jquery-ui.css">
+    <link rel="stylesheet" href="css/themes-jquery-ui.css">
+    <link href="css/dashboard.css" rel="stylesheet">
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
-  
 
     <style>
       .bd-placeholder-img {
@@ -30,9 +32,8 @@
       }
     </style>
 
-    
     <!-- Custom styles for this template -->
-    <link href="css/dashboard.css" rel="stylesheet">
+  <link href="css/dashboard.css" rel="stylesheet">
   </head>
   <body>
     
@@ -69,12 +70,6 @@
             <a class="nav-link" href="roles.html">
               <i class="fa-solid fa-user-tie"></i>
               Roles
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="permisos.html">
-              <i class="fa-solid fa-user-gear"></i>
-              Permisos
             </a>
           </li>
           <li class="nav-item">
@@ -145,20 +140,24 @@
                       <input id="nombre" type="text" class="form-control" placeholder="Nombre" aria-label="Nombre">
                     </div>
                     <div class="col-6 mt-3">
-                      <label for="correo" class="form-label">Correo electrónico <span class="text-danger">*</span></label>
-                      <input id="email" type="text" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico">
+                      <label for="direccion" class="form-label">Cédula <span class="text-danger">*</span></label>
+                      <input id="cedula" type="text" class="form-control" placeholder="Cédula" aria-label="Teléfono">
                     </div>
                     <div class="col-6 mt-3">
-                      <label for="direccion" class="form-label">Direccion </label>
-                      <input id="direccion" type="text" class="form-control" placeholder="Dirección" aria-label="Dirección">
+                      <label for="correo" class="form-label">Correo electrónico <span class="text-danger">*</span></label>
+                      <input id="email" type="text" class="form-control" placeholder="Correo electrónico" aria-label="Correo electrónico">
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Teléfono <span class="text-danger">*</span></label>
                       <input id="telefono" type="text" class="form-control" placeholder="Teléfono" aria-label="Teléfono">
                     </div>
                     <div class="col-6 mt-3">
-                      <label for="direccion" class="form-label">Cédula <span class="text-danger">*</span></label>
-                      <input id="cedula" type="text" class="form-control" placeholder="Cédula" aria-label="Teléfono">
+                      <label for="direccion" class="form-label">Direccion </label>
+                      <input id="direccion" type="text" class="form-control" placeholder="Dirección" aria-label="Dirección">
+                    </div>
+                    <div class="col-md-6 mt-3">
+                      <label for="fechanac" class="form-label">Fecha de nacimiento <span class="text-danger">*</span></label>
+                      <input id="fecha" type="text" class="form-control" placeholder="Fecha de nacimiento" aria-label="Dirección" >
                     </div>
                     <div class="col-6 mt-3">
                       <label for="direccion" class="form-label">Estado <span class="text-danger">*</span></label>
@@ -168,7 +167,7 @@
                         <option value="2">Inactivo</option>
                       </select>
                     </div>
-                  </div>  
+                  </div> 
                 </div>
                 <div class="card-footer text-center">
                   <div class="row">
@@ -186,14 +185,6 @@
         </div>
       </div>
     </main>
-    <div class="mt-5 p-4 bg-dark text-white text-center " style="z-index: 9999;bottom: 0px;position: absolute;">
-      <div class="container">
-        <div class="row">
-          <div class="col-4 fs-6"><p>Copyright &copy; Constru-tech 2023</p></div>
-          <div class="col-4 fs-5">Soporte: <i class="fa-brands fa-whatsapp"></i></div>
-        </div>
-      </div>
-    </div>
   </div>
 </div>
 <script type="text/javascript" src="js/jquery-3.6.0.js"></script>
@@ -207,7 +198,14 @@
 <script src="js/validaciones.js"></script>
 <script src="js/moment.js"></script>
 <script>
-  
+  $(function(){
+    $("#fecha").datepicker({
+      dateFormat: "yy/mm/dd",
+      defaultDate:+7
+    });
+    $("#fecha").datepicker("option", "showAnim", "slide");
+
+  }); 
   $("#form").submit(function(e){
       e.preventDefault();
   });
